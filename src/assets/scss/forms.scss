@@ -1,0 +1,107 @@
+@import "mixins";
+@import "colors";
+
+
+.form-group{
+  @include dib100;
+  .form-label{
+    @include dib100;
+    font-style: normal;
+    font-weight: 700;
+    @include remy(14);
+    line-height: 17px;
+    color: $fc-primary;
+    margin-bottom: 7px;
+    .light_ui{
+      font-weight:400;
+      display: inline-flex;
+      margin-left: 5px;
+    }
+
+
+  }
+  .fg-inner{
+    @include dib100;
+    margin-bottom: 4px;
+    vertical-align: top;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .form-label{
+    display: flex;
+    align-items: center;
+    .info_icon{
+      margin-left: 7px;
+      display: inline-flex;
+      cursor: pointer;
+    }
+  }
+
+  .form-control{
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  .form-label-description{
+    font-weight: 400;
+    @include remy(16);
+    line-height: 19px;
+    margin-bottom: 17px;
+  }
+}
+
+
+.error-1{
+  @include dib100;
+  font-style: normal;
+  font-weight: 400;
+  @include remy(14);
+  line-height: 20px;
+  color: $fc-red;
+  @media (max-width:450px){
+    @include remy(12);
+  }
+  @media (max-width:400px){
+    @include remy(12);
+  }
+}
+
+
+span.btn {
+  :active{
+    border: none !important;
+  }
+  &.eye-icon {
+    position: absolute;
+    right: -8px;
+    top: 31px;
+    path{
+      @include trans2s;
+    }
+    &:hover{
+      svg path{
+        fill: $fc-blue;
+        @include trans2s;
+      }
+    }
+    &.active{
+      svg path{
+        fill:$fc-primary;
+        border: none;
+      }
+    }
+    &:focus{
+      outline: none;
+      box-shadow: none;
+    }
+    &:active{
+      svg path{
+        fill: $fc-primary;
+      }
+
+    }
+  }
+}

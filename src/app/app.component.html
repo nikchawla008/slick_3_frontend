@@ -1,0 +1,5 @@
+<app-header *ngIf="showHeader"></app-header>
+<div [ngClass]="{'wrapper': showHeader}">
+  <router-outlet></router-outlet>
+</div>
+

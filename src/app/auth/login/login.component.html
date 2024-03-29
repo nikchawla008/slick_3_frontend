@@ -1,0 +1,51 @@
+<div class="half">
+  <div class="bg order-1 order-md-2" style="background-image: url('/assets/images/login-image.webp');"></div>
+  <div class="contents order-2 order-md-1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-6">
+          <div class="form-block">
+            <div class="text-center mb-5">
+              <h3>Login to <strong>Survetrics</strong></h3>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+              <div class="form-group first">
+                <div class="fg-inner">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" formControlName="email" placeholder="your-email@gmail.com" id="username">
+                </div>
+                <div class="fg-inner error-wrapper" *ngIf="loginFormControl['email'].invalid && loginFormControl['email'].touched">
+                  <small class="error-1" *ngIf="loginFormControl['email'].hasError('required')">
+                    {{errorService.FIELD_REQUIRED}}
+                  </small>
+                  <small class="error-1" *ngIf="loginFormControl['email'].hasError('email')">
+                    {{errorService.INVALID_EMAIL}}
+                  </small>
+                </div>
+              </div>
+              <div class="form-group last mb-3">
+                <div class="fg-inner">
+                  <label for="password">Password</label>
+                  <input [type]="showPassword ? 'text' : 'password'" autocomplete="password" class="form-control" formControlName="password" placeholder="Your Password" id="password">
+
+                  <span class="btn eye-icon" (click)="onClickEye()">
+                    <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.87994 7.01098C2.29883 7.65375 2.79527 8.29655 3.362 8.89508C4.94717 10.5679 6.75676 11.5557 8.76078 11.5557C10.7648 11.5557 12.5744 10.568 14.1596 8.89508C14.7263 8.29655 15.2227 7.65375 15.6416 7.01098C15.7612 6.82862 15.867 6.6571 15.9583 6.50001C15.867 6.34293 15.7612 6.17139 15.6416 5.98904C15.2227 5.34627 14.7263 4.70348 14.1596 4.10494C12.5744 2.43207 10.7648 1.44437 8.76078 1.44437C6.75676 1.44437 4.94712 2.432 3.362 4.10494C2.79527 4.70348 2.29883 5.34627 1.87994 5.98904C1.76039 6.17141 1.65453 6.34292 1.56327 6.50001C1.65452 6.6571 1.76039 6.82863 1.87994 7.01098ZM0.0766574 6.1768C0.179781 5.97367 0.37233 5.63512 0.65249 5.20541C1.117 4.49402 1.66545 3.78263 2.29607 3.11725C4.13311 1.17898 6.29312 0 8.76087 0C11.2286 0 13.3887 1.17905 15.2257 3.11725C15.8563 3.78261 16.4047 4.494 16.8692 5.20541C17.1494 5.63514 17.342 5.97367 17.4451 6.1768C17.5473 6.37993 17.5473 6.62007 17.4451 6.8232C17.342 7.02633 17.1494 7.36488 16.8692 7.79459C16.4047 8.50598 15.8563 9.21737 15.2257 9.88275C13.3886 11.821 11.2286 13 8.76087 13C6.29312 13 4.13304 11.821 2.29607 9.88275C1.66548 9.21739 1.117 8.506 0.65249 7.79459C0.37233 7.36486 0.179778 7.02632 0.0766574 6.8232C-0.0255525 6.62007 -0.0255525 6.37993 0.0766574 6.1768Z" fill="#C7C7C7"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.04386 9.6085C7.48334 9.6085 6.21777 8.21638 6.21777 6.49981C6.21777 4.78324 7.48334 3.39111 9.04386 3.39111C10.6044 3.39111 11.8699 4.78324 11.8699 6.49981C11.8699 8.21638 10.6044 9.6085 9.04386 9.6085ZM9.04386 8.05416C9.82456 8.05416 10.4569 7.35858 10.4569 6.49981C10.4569 5.64104 9.82456 4.94546 9.04386 4.94546C8.26316 4.94546 7.63082 5.64104 7.63082 6.49981C7.63082 7.35858 8.26316 8.05416 9.04386 8.05416Z" fill="#C7C7C7"/>
+                    </svg>
+                  </span>
+                </div>
+                <div class="fg-inner error-wrapper" *ngIf="loginFormControl['password'].invalid && loginFormControl['password'].touched">
+                  <small class="error-1" *ngIf="loginFormControl['password'].hasError('required')">
+                    {{errorService.FIELD_REQUIRED}}
+                  </small>
+                </div>
+              </div>
+              <input type="submit" value="Log In" class="btn btn-block btn-primary">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
