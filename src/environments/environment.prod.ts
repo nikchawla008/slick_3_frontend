@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'https://oct-backend.onrender.com'
+  backendUrl: 'https://slick-3-backend.onrender.com'
 };
