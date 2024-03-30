@@ -82,6 +82,28 @@ export class SurveyComponent implements OnInit {
     hindi: each, english: this.q4English[index]
   }))
 
+  q5Hindi = [
+    "Illiterate",
+    "School up to 4 Years",
+    "School 5-9 Years",
+    "SSC/ HSC",
+    "Some college but not grad.",
+    "Grad/ Post grad. (Gen)",
+    "Grad/ Post grad. (Prof)"
+  ]
+  q5English = [
+    "Illiterate",
+    "School up to 4 Years",
+    "School 5-9 Years",
+    "SSC/ HSC",
+    "Some college but not grad.",
+    "Grad/ Post grad. (Gen)",
+    "Grad/ Post grad. (Prof)"
+  ]
+  q5 = this.q5Hindi.map((each, index) => ({
+    hindi: each, english: this.q5English[index]
+  }))
+
   q8Hindi = [
     "Illiterate",
     "Literate but no formal schooling",
@@ -475,7 +497,7 @@ export class SurveyComponent implements OnInit {
     // FORM TERMINATION CONDITIONS
 
     // Q1
-    if(formValue.q1 && formValue.q1! === 2) {
+    if(formValue.q1 && formValue.q1! === 1) {
       this.openSurveyEndModal()
       return;
     }
@@ -487,8 +509,9 @@ export class SurveyComponent implements OnInit {
     }
 
     // Q5
-    if(formValue.q5) {
-
+    if(formValue.q5 && formValue.q4 && (formValue.q4!.length < 7 || ![6, 7].includes(formValue.q5!))) {
+      this.openSurveyEndModal()
+      return;
     }
 
     // Q7
@@ -645,11 +668,11 @@ export class SurveyComponent implements OnInit {
       requestBody.latitude = position.coords.latitude
       requestBody.longitude = position.coords.longitude
       console.log(requestBody)
-      // this.apiCall(requestBody)
+      this.apiCall(requestBody)
     }, err => {
       requestBody.latitude = 0
       requestBody.longitude = 0
-      // this.apiCall(requestBody)
+      this.apiCall(requestBody)
     })
   }
 

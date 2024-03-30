@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://oct-backend.onrender.com'
+  backendUrl: 'http://localhost:3000'
 };
 
 /*
