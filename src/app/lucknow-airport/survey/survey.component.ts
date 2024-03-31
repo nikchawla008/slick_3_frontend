@@ -137,10 +137,9 @@ export class SurveyComponent implements OnInit {
     "Skilled Worker",
     "Petty Traders",
     "Shop Owner",
-    "Businessman/ Industrialist with number of employees",
-    "None",
-    "1-9",
-    "10+",
+    "Businessman/ Industrialist with number of employees: None",
+    "Businessman/ Industrialist with number of employees: 1-9",
+    "Businessman/ Industrialist with number of employees: 10+",
     "Self-employed professional",
     "Clerk/Salesman",
     "Supervisory level",
@@ -157,10 +156,9 @@ export class SurveyComponent implements OnInit {
     "Skilled Worker",
     "Petty Traders",
     "Shop Owner",
-    "Businessman/ Industrialist with number of employees",
-    "None",
-    "1-9",
-    "10+",
+    "Businessman/ Industrialist with number of employees: None",
+    "Businessman/ Industrialist with number of employees: 1-9",
+    "Businessman/ Industrialist with number of employees: 10+",
     "Self-employed professional",
     "Clerk/Salesman",
     "Supervisory level",
@@ -583,6 +581,16 @@ export class SurveyComponent implements OnInit {
   goToNextStep(formValue: any) {
     let nextStep = this.step + 1
     // QUESTION SKIPPING STEPS HERE
+
+    if(this.step == 7) {
+      // check if q8 or q9
+      if(formValue.q6 && formValue.q6! === 2) {
+        nextStep = 8
+      } else {
+        nextStep = 9
+      }
+    }
+
     this.step = nextStep > this.MAX_STEP ? this.MAX_STEP : nextStep;
   }
 
@@ -594,6 +602,14 @@ export class SurveyComponent implements OnInit {
     const formValue = this.surveyForm.getRawValue()
 
     // BACK IN CASE OF QUESTION SKIP INSTRUCTIONS HERE
+    if(this.step == 9) {
+      // check if q8 or q7
+      if(formValue.q6 && formValue.q6! === 2) {
+        prevStep = 8
+      } else {
+        prevStep = 7
+      }
+    }
 
     this.clearControl();
     this.step = prevStep
