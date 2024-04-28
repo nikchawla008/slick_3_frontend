@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {SubmissionService} from "../../services/submission.service";
 import {NO_WHITE_SPACES_ONLY} from "../../utils/common";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {AuthService} from "../../services/auth/auth.service";
-import {yesNoQuestions, gender, rateQuestion} from "../../utils/constants";
+import {gender, rateQuestion} from "../../utils/constants";
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
@@ -14,7 +13,7 @@ const SINGLE_SELECT_VALIDATOR = [Validators.required]
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrl: './survey.component.scss'
+  styleUrls: ['./survey.component.scss']
 })
 export class SurveyComponent {
   step: number=0;
@@ -22,13 +21,13 @@ export class SurveyComponent {
   language : 'english' | 'hindi' ='english'
 
   A1Hindi=[
-    "Business / Official / Conference", 
+    "Business / Official / Conference",
     "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
     "Sight Seeing", "Tourism / Pilgrimage",
     "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
   ]
   A1English=[
-    "Business / Official / Conference", 
+    "Business / Official / Conference",
     "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
     "Sight Seeing", "Tourism / Pilgrimage",
     "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
@@ -92,7 +91,7 @@ export class SurveyComponent {
   }))
   gender1=gender;
   rateQuestion=rateQuestion;
-  
+
   q7Hindi=[
     "Male",
     "Female",
@@ -277,21 +276,10 @@ export class SurveyComponent {
       }]
     },
     6: {
-      controls: ["q6a"],
+      controls: ["B1"],
       question: [{
-        hindi: 
-          "q1 Overall Satisfaction with food and services on train",
-      
-        english: [
-          "q1 Overall Satisfaction with food and services on train",
-          "q2 Quality of food and beverages served on train",
-          "q3 Quality of Packaging of the food & beverages served",
-          "q4 Quantity of food and beverages served on train",
-          "q5 Hygiene Level",
-          "q6 Variety in Menu",
-          "q7 Staff Behaviour",
-          "q8 Value for Money"
-      ]
+        hindi: "q1 Overall Satisfaction with food and services on train",
+        english: "q1 Overall Satisfaction with food and services on train",
       }]
     },
     7: {
@@ -577,90 +565,17 @@ export class SurveyComponent {
   /**
    * Go to next step
    */
-  // async nextStep() {
-  //   const formValue = this.surveyForm.getRawValue()
+  async nextStep() {
+    const formValue = this.surveyForm.getRawValue()
 
-  //   // FORM TERMINATION CONDITIONS
-
-  //   // Q1
-  //   if(formValue.q1 && formValue.q1! === 1) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q2
-  //   if(formValue.q2 && [1,2,3,4,5,6].includes(formValue.q2!)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q5
-  //   if(formValue.q5 && formValue.q4 && (formValue.q4!.length < 7 || ![6, 7].includes(formValue.q5!))) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q7
-  //   if(formValue.q7 && !(formValue.q7 <= 34 && formValue.q7! >= 18)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q8
-  //   if(formValue.q8 && [1,2,3,4,5].includes(formValue.q8!)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q9
-  //   if(formValue.q9 && [1,2,3,14,17].includes(formValue.q9!)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q10
-  //   if(formValue.q10 && [1,3].includes(formValue.q10!)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q11 => 3,6,7 must be coded and at least 2 more products (at least 5)
-  //   if(formValue.q11 && (!formValue.q11!.includes(3) || !formValue.q11!.includes(6) || !formValue.q11!.includes(7) || formValue.q11!.length < 5) ) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q12 => 3 must be coded and at least 4 more brands (at least 5)
-  //   if( formValue.q12 && (!formValue.q12!.includes(3) || formValue.q12!.length < 5) ) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q13
-  //   if( formValue.q13 && formValue.q13! === 1 ) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q14
-  //   if( formValue.q14 && (formValue.q14! === 2 || formValue.q14! === 3)) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   // Q15
-  //   if( formValue.q15 && formValue.q15! === 2) {
-  //     this.openSurveyEndModal()
-  //     return;
-  //   }
-
-  //   if (this.step + 1 > this.MAX_STEP) {
-  //     // Submit
-  //     await this.submitSurveyForm();
-  //   } else {
-  //     this.goToNextStep(formValue)
-  //   }
-  // }
+    // FORM TERMINATION CONDITIONS
+    if (this.step + 1 > this.MAX_STEP) {
+      // Submit
+      await this.submitSurveyForm();
+    } else {
+      this.goToNextStep(formValue)
+    }
+  }
 
   /**
    * Find next step according to question skipping logic
@@ -725,9 +640,9 @@ export class SurveyComponent {
    * Disable next button
    */
   get disableNext() {
-    // return false
-    const stepMapControls = this.stepMap[this.step].controls
-    return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
+    return false
+    // const stepMapControls = this.stepMap[this.step].controls
+    // return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
   }
 
   /**

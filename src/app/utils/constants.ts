@@ -26,14 +26,26 @@ const yesNoQuestionsEnglish = [
 const yesNoQuestions = yesNoQuestionsHindi.map((each, index) => ({
   hindi: each, english: yesNoQuestionsEnglish[index]
 }))
-const rateQuestion=[
+
+const rateQuestionHindi = [
   "Excellent",
-    "Very Good",
-    "Good",
-    "Average",
-    "Bad",
-    "Not applicable",
+  "Very Good",
+  "Good",
+  "Average",
+  "Bad",
+  "Not applicable",
 ]
+const rateQuestionEnglish = [
+  "Excellent",
+  "Very Good",
+  "Good",
+  "Average",
+  "Bad",
+  "Not applicable",
+]
+const rateQuestion = rateQuestionHindi.map((each, index) => ({
+  hindi: each, english: rateQuestionEnglish[index]
+}))
 export {
   LOCAL_STORAGE_AUTH_NAME,
   gender,
