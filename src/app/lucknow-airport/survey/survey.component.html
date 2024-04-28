@@ -5,11 +5,12 @@
       <img ngSrc="assets/images/img.jpg" height="331" width="422">
     </div>
     <p>
-      Good Morning/Afternoon. I work for Cerebro Consumer Consulting, we are an independent market research agency, and we obtain feedback from consumers
-      on different products and services so that they can be redesigned to better meet consumer’s needs.
-      We are currently doing one such study on food products.
-      We would like to include your opinion. Please be assured that we are not trying to sell you anything and that this survey is being conducted purely for research purpose.
-      Thank you very much for participating in this study.
+      Good Morning / Afternoon / Evening.	
+      Dear Passenger! At Indian Railways, we continuously strive to provide excellent services to you. 
+      In order to improve further, we would like you to participate in this survey which is being conducted by IRCTC 
+      with the help of Foresight Research & Consulting Pvt Ltd. Please spend some time telling us about your experience 
+      on this Train. Your feedback is very important to us. This will help us serve you better next time. Thank you.
+      Please share following details:
     </p>
   </div>
 
@@ -20,7 +21,7 @@
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q1">
-        <label *ngFor="let list of yesNoQuestions; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of A1; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
@@ -32,7 +33,7 @@
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q2">
-        <label *ngFor="let list of q2; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of A2; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
@@ -44,31 +45,46 @@
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q3">
-        <label *ngFor="let list of gender; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of A3; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
   </div>
 
   <div *ngIf="step === 4" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <p-checkbox *ngFor="let list of q4; let i = index"
-                  [formControl]="returnAsFormControl(personalInformationFormControls['q4'])" [binary]="false"
-                  [value]="i+1" [label]="list[language]">
-      </p-checkbox>
-    </div>
-  </div>
 
+      <div class="card-header">
+        <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      </div>
+      <div class="form-group">
+        <nz-radio-group class="radio-group" formControlName="q1">
+          <label *ngFor="let list of A4; let i = index" [nzValue]="i+1" class="radio"
+                 nz-radio>{{ list[language] }}</label>
+        </nz-radio-group>
+      </div>
+  </div>
+  <div *ngIf="step === 4" class="step">
+
+      <div class="card-header">
+        <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      </div>
+      <div class="form-group">
+        <nz-radio-group class="radio-group" formControlName="q1">
+          <label *ngFor="let list of gender1; let i = index" [nzValue]="i+1" class="radio"
+                 nz-radio>{{ list[language] }}</label>
+        </nz-radio-group>
+      </div>
+  </div>
+  //part B
+
+  //section 2
   <div *ngIf="step === 5" class="step">
     <div class="card-header">
       <h2>{{stepMap[step]?.question[0][language]}}</h2>
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q5">
-        <label *ngFor="let list of q5; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of a1; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
@@ -80,21 +96,24 @@
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q6">
-        <label *ngFor="let list of yesNoQuestions; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of a2; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
   </div>
 
   <div *ngIf="step === 7" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
+
+      <div class="card-header">
+        <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      </div>
+      <div class="form-group">
+        <nz-radio-group class="radio-group" formControlName="q1">
+          <label *ngFor="let list of a3; let i = index" [nzValue]="i+1" class="radio"
+                 nz-radio>{{ list[language] }}</label>
+        </nz-radio-group>
+      </div>
     </div>
-    <div class="form-group">
-      <nz-input-number [nzMin]="1" style="width: 100%" [nzStep]="1"
-                       formControlName="q7"></nz-input-number>
-    </div>
-  </div>
 
   <div *ngIf="step === 8" class="step">
     <div class="card-header">
@@ -102,96 +121,40 @@
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q8">
-        <label *ngFor="let list of q8; let i = index" [nzValue]="i+1" class="radio"
+        <label *ngFor="let list of gender2; let i = index" [nzValue]="i+1" class="radio"
                nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
   </div>
 
-  <div *ngIf="step === 9" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <nz-radio-group class="radio-group" formControlName="q9">
-        <label *ngFor="let list of q9; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
-      </nz-radio-group>
-    </div>
-  </div>
-
-  <div *ngIf="step === 10" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <nz-radio-group class="radio-group" formControlName="q10">
-        <label *ngFor="let list of q10; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
-      </nz-radio-group>
+  //section 2 options
+  <div class="table">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+        </tr>
+        <tr>
+          <td *ngFor="let list of rateQuestion; let i = index">
+            <input [value]="i+1" formControlName="B1" type="radio">
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <div *ngIf="step === 11" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <p-checkbox *ngFor="let list of q11; let i = index"
-                  [formControl]="returnAsFormControl(personalInformationFormControls['q11'])" [binary]="false"
-                  [value]="i+1" [label]="list[language]">
-      </p-checkbox>
-    </div>
-  </div>
-
-  <div *ngIf="step === 12" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <p-checkbox *ngFor="let list of q12; let i = index"
-                  [formControl]="returnAsFormControl(personalInformationFormControls['q12'])" [binary]="false"
-                  [value]="i+1" [label]="list[language]">
-      </p-checkbox>
-    </div>
-  </div>
-
-  <div *ngIf="step === 13" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <nz-radio-group class="radio-group" formControlName="q13">
-        <label *ngFor="let list of q13; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
-      </nz-radio-group>
-    </div>
-  </div>
-
-  <div *ngIf="step === 14" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <nz-radio-group class="radio-group" formControlName="q14">
-        <label *ngFor="let list of q14; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
-      </nz-radio-group>
-    </div>
-  </div>
-
-  <div *ngIf="step === 15" class="step">
-    <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    <div class="form-group">
-      <nz-radio-group class="radio-group" formControlName="q15">
-        <label *ngFor="let list of q15; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
-      </nz-radio-group>
-    </div>
-  </div>
-
+  <div class="form-group mob_show">
+    <nz-radio-group class="radio-group" formControlName="B1">
+      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+             nz-radio>{{i + 1}} {{ list[language] }}</label>
+    </nz-radio-group>
+    </div>
+  
   <div *ngIf="step === 16" class="step">
     <div class="card-header">
       <h2>THANK YOU VERY MUCH FOR YOUR COOPERATION.</h2>
@@ -248,3 +211,4 @@
     </button>
   </div>
 </div>
+

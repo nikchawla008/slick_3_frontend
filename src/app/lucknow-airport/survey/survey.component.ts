@@ -5,467 +5,555 @@ import {SubmissionService} from "../../services/submission.service";
 import {NO_WHITE_SPACES_ONLY} from "../../utils/common";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {AuthService} from "../../services/auth/auth.service";
-import {yesNoQuestions, gender} from "../../utils/constants";
+import {yesNoQuestions, gender, rateQuestion} from "../../utils/constants";
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
 const SINGLE_SELECT_VALIDATOR = [Validators.required]
 
 @Component({
-  selector: 'app-survey', templateUrl: './survey.component.html', styleUrls: ['./survey.component.scss']
+  selector: 'app-survey',
+  templateUrl: './survey.component.html',
+  styleUrl: './survey.component.scss'
 })
-export class SurveyComponent implements OnInit {
-  // Stepper
-  step: number = 0;
-  MAX_STEP: number = 16;
-  language: 'english' | 'hindi' = 'english'
+export class SurveyComponent {
+  step: number=0;
+  MAX_STEP: number =24;
+  language : 'english' | 'hindi' ='english'
 
-
-  q2Hindi = [
-    "Market Research Company",
-    "Advertising Agency",
-    "Journalism/ TV/ Radio Reporting",
-    "Manufacturer or retailer of FMCG/ packaged food/ beverage",
-    "Owner of a Restaurant/ Hotel/ Outlets",
-    "Working in a food products/ beverages/ restaurant manufacturing/ distribution/ marketing unit",
-    "Banking",
-    "None of the above"
+  A1Hindi=[
+    "Business / Official / Conference", 
+    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
+    "Sight Seeing", "Tourism / Pilgrimage",
+    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
   ]
-  q2English = [
-    "Market Research Company",
-    "Advertising Agency",
-    "Journalism/ TV/ Radio Reporting",
-    "Manufacturer or retailer of FMCG/ packaged food/ beverage",
-    "Owner of a Restaurant/ Hotel/ Outlets",
-    "Working in a food products/ beverages/ restaurant manufacturing/ distribution/ marketing unit",
-    "Banking",
-    "None of the above"
+  A1English=[
+    "Business / Official / Conference", 
+    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
+    "Sight Seeing", "Tourism / Pilgrimage",
+    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
   ]
-  q2 = this.q2Hindi.map((each, index) => ({
-    hindi: each, english: this.q2English[index]
+  A1 = this.A1Hindi.map((each, index) => ({
+    hindi: each, english: this.A1English[index]
   }))
-
-
-  // Gender questions
-  gender = gender;
-
-  // YES/NO Questions
-  yesNoQuestions = yesNoQuestions;
-
-  q4Hindi = [
-    "Electricity connection",
-    "Ceiling fan",
-    "LPG stove",
-    "Two Wheeler",
-    "Colour TV",
-    "Refrigerator",
-    "Washing Machine",
-    "Personal Computer/ Laptop",
-    "Car/Jeep/Van",
-    "Air conditioner",
-    "Agricultural Land"
+  A2Hindi=[
+    "1st AC",
+    "AC 2 Tier",
+    "AC 3 Tier",
+    "EC (Executive Car)",
+    "CC (Chair Car)",
+    "Non AC – Chair Car",
+    "Sleeper"
   ]
-  q4English = [
-    "Electricity connection",
-    "Ceiling fan",
-    "LPG stove",
-    "Two Wheeler",
-    "Colour TV",
-    "Refrigerator",
-    "Washing Machine",
-    "Personal Computer/ Laptop",
-    "Car/Jeep/Van",
-    "Air conditioner",
-    "Agricultural Land"
+  A2English=[
+    "1st AC",
+    "AC 2 Tier",
+    "AC 3 Tier",
+    "EC (Executive Car)",
+    "CC (Chair Car)",
+    "Non AC – Chair Car",
+    "Sleeper"
   ]
-  q4 = this.q4Hindi.map((each, index) => ({
-    hindi: each, english: this.q4English[index]
+
+  A2 = this.A2Hindi.map((each, index) => ({
+    hindi: each, english: this.A2English[index]
   }))
-
-  q5Hindi = [
-    "Illiterate",
-    "School up to 4 Years",
-    "School 5-9 Years",
-    "SSC/ HSC",
-    "Some college but not grad.",
-    "Grad/ Post grad. (Gen)",
-    "Grad/ Post grad. (Prof)"
+  A3Hindi=[
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
-  q5English = [
-    "Illiterate",
-    "School up to 4 Years",
-    "School 5-9 Years",
-    "SSC/ HSC",
-    "Some college but not grad.",
-    "Grad/ Post grad. (Gen)",
-    "Grad/ Post grad. (Prof)"
+  A3English=[
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
-  q5 = this.q5Hindi.map((each, index) => ({
-    hindi: each, english: this.q5English[index]
+  A3 = this.A3Hindi.map((each, index) => ({
+    hindi: each, english: this.A3English[index]
   }))
-
-  q8Hindi = [
-    "Illiterate",
-    "Literate but no formal schooling",
-    "School – Up to 4th Standard",
-    "5th-9th standard",
-    "SSC/HSC (10TH-12TH)",
-    "Some College (incl. dip) but not graduate",
-    "Graduate- General (B.A., B.Sc., B.Com.)",
-    "Graduate – Professional (B.E., M.B.B.S., B.Tech)",
-    "Post-Graduate – General (M.A., M.Sc., M.Com, M. Phil, PHD)",
-    "Post-Graduate- Professional (M.E., M.Tech, MBA, etc.)"
+  A4Hindi=[
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
   ]
-  q8English = [
-    "Illiterate",
-    "Literate but no formal schooling",
-    "School – Up to 4th Standard",
-    "5th-9th standard",
-    "SSC/HSC (10TH-12TH)",
-    "Some College (incl. dip) but not graduate",
-    "Graduate- General (B.A., B.Sc., B.Com.)",
-    "Graduate – Professional (B.E., M.B.B.S., B.Tech)",
-    "Post-Graduate – General (M.A., M.Sc., M.Com, M. Phil, PHD)",
-    "Post-Graduate- Professional (M.E., M.Tech, MBA, etc.)"
+  A4English=[
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
   ]
-  q8 = this.q8Hindi.map((each, index) => ({
-    hindi: each, english: this.q8English[index]
+  A4 = this.A4Hindi.map((each, index) => ({
+    hindi: each, english: this.A4English[index]
   }))
-
-  q9Hindi = [
-    "Unskilled Worker",
-    "Skilled Worker",
-    "Petty Traders",
-    "Shop Owner",
-    "Businessman/ Industrialist with number of employees: None",
-    "Businessman/ Industrialist with number of employees: 1-9",
-    "Businessman/ Industrialist with number of employees: 10+",
-    "Self-employed professional",
-    "Clerk/Salesman",
-    "Supervisory level",
-    "Officer/ Executive- Junior",
-    "Officer/ Executive- Middle/ Senior",
-    "Student",
-    "Retired",
-    "Unemployed",
-    "Housewife",
-    "Others (Please Specify _______________________)"
+  gender1=gender;
+  rateQuestion=rateQuestion;
+  
+  q7Hindi=[
+    "Male",
+    "Female",
+    "Transgender"
   ]
-  q9English = [
-    "Unskilled Worker",
-    "Skilled Worker",
-    "Petty Traders",
-    "Shop Owner",
-    "Businessman/ Industrialist with number of employees: None",
-    "Businessman/ Industrialist with number of employees: 1-9",
-    "Businessman/ Industrialist with number of employees: 10+",
-    "Self-employed professional",
-    "Clerk/Salesman",
-    "Supervisory level",
-    "Officer/ Executive- Junior",
-    "Officer/ Executive- Middle/ Senior",
-    "Student",
-    "Retired",
-    "Unemployed",
-    "Housewife",
-    "Others (Please Specify _______________________)"
+  q7English=[
+    "Male",
+    "Female",
+    "Transgender"
   ]
-  q9 = this.q9Hindi.map((each, index) => ({
-    hindi: each, english: this.q9English[index]
+  q7 = this.q7Hindi.map((each, index) => ({
+    hindi: each, english: this.q7English[index]
   }))
-
-  q10Hindi = [
-    "I consume Fast Food on special occasions like party, family function/ get together, while celebrating with friends",
-    "I consume Fast Food whenever I feel like – anytime and any where",
-    "I don’t like consuming Fast Food or consume it very infrequently"
+  //next
+  a1Hindi=[
+    "Have arrived after Train journey",
+    "Will undertake Train journey after visit",
+    "Came here while  waiting to receive relative/friend/colleague",
+    "Came here for eating purpose"
   ]
-  q10English = [
-    "I consume Fast Food on special occasions like party, family function/ get together, while celebrating with friends",
-    "I consume Fast Food whenever I feel like – anytime and any where",
-    "I don’t like consuming Fast Food or consume it very infrequently"
+  a1English=[
+    "Have arrived after Train journey",
+    "Will undertake Train journey after visit",
+    "Came here while  waiting to receive relative/friend/colleague",
+    "Came here for eating purpose"
   ]
-  q10 = this.q10Hindi.map((each, index) => ({
-    hindi: each, english: this.q10English[index]
+  a1 = this.a1Hindi.map((each, index) => ({
+    hindi: each, english: this.a1English[index]
   }))
-
-
-  q11Hindi = [
-    "Burger/Sandwich",
-    "Pizza",
-    "Burrito",
-    "Pasta",
-    "Garlic Bread",
-    "Taco",
-    "Quesadilla",
-    "Fried Chicken",
-    "Rice Bowl",
-    "Others"
+  a2Hindi=[
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
-  q11English = [
-    "Burger/Sandwich",
-    "Pizza",
-    "Burrito",
-    "Pasta",
-    "Garlic Bread",
-    "Taco",
-    "Quesadilla",
-    "Fried Chicken",
-    "Rice Bowl",
-    "Others"
+  a2English=[
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
-  q11 = this.q11Hindi.map((each, index) => ({
-    hindi: each, english: this.q11English[index]
+  a2 = this.a2Hindi.map((each, index) => ({
+    hindi: each, english: this.a2English[index]
   }))
-
-  q12Hindi = [
-    "Domino’s Pizza",
-    "Pizza Hut",
-    "Taco Bell",
-    "Ovenstory",
-    "Mojo Pizza",
-    "Onesta",
-    "Chicago Pizza",
-    "McDonald's",
-    "Burger King",
-    "KFC",
-    "Haldiram’s",
-    "Pizza Express",
-    "Others"
+  a3Hindi=[
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
   ]
-  q12English = [
-    "Domino’s Pizza",
-    "Pizza Hut",
-    "Taco Bell",
-    "Ovenstory",
-    "Mojo Pizza",
-    "Onesta",
-    "Chicago Pizza",
-    "McDonald's",
-    "Burger King",
-    "KFC",
-    "Haldiram’s",
-    "Pizza Express",
-    "Others"
+  a3English=[
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
+  ]
+  a3 = this.a3Hindi.map((each, index) => ({
+    hindi: each, english: this.a3English[index]
+  }))
+  gender2=gender
+  q12Hindi=[
+    "Male",
+    "Female",
+    "Transgender"
+  ]
+  q12English=[
+    "Male",
+    "Female",
+    "Transgender"
   ]
   q12 = this.q12Hindi.map((each, index) => ({
     hindi: each, english: this.q12English[index]
   }))
-
-  q13Hindi = [
-    "In last 3 months",
-    "Once in last 4-9 months",
-    "More than 9 months ago"
-  ]
-  q13English = [
-    "In last 3 months",
-    "Once in last 4-9 months",
-    "More than 9 months ago"
-  ]
-  q13 = this.q13Hindi.map((each, index) => ({
-    hindi: each, english: this.q13English[index]
-  }))
-
-
-  q14Hindi = [
-    "It’s me who decides the brand of Fast Food that I want to consume",
-    "I express my opinion and mutually decide with others the brand of Fast Food",
-    "I hardly have any opinion when it comes to Fast Food brands, I consume whatever others decide to consume"
-  ]
-  q14English = [
-    "It’s me who decides the brand of Fast Food that I want to consume",
-    "I express my opinion and mutually decide with others the brand of Fast Food",
-    "I hardly have any opinion when it comes to Fast Food brands, I consume whatever others decide to consume"
-  ]
-  q14 = this.q14Hindi.map((each, index) => ({
-    hindi: each, english: this.q14English[index]
-  }))
-
-  q15Hindi = [
-    "Willing to participate",
-    "Not willing to participate",
-  ]
-  q15English = [
-    "Willing to participate",
-    "Not willing to participate",
-  ]
-  q15 = this.q15Hindi.map((each, index) => ({
-    hindi: each, english: this.q15English[index]
-  }))
-
-
+  // q13Hindi=[
+  //   "Excellent",
+  //   "Very Good",
+  //   "Good",
+  //   "Average",
+  //   "Bad",
+  //   "Not applicable"
+  // ]
   surveySubmitStarted = false;
-
   surveyForm = new FormGroup<any>({
     name: new FormControl(null, STRING_EMPTY_VALIDATOR),
     contactNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
 
-    surveyorName: new FormControl(null, STRING_EMPTY_VALIDATOR),
-    date: new FormControl(null, SINGLE_SELECT_VALIDATOR),
-    place: new FormControl(null, STRING_EMPTY_VALIDATOR),
+    // email validator.email  null
 
 
-    q1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    A1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    A2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q3: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    A3: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q4: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    A4: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q5: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    A5: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q6: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q7: new FormControl<any>(null, NUMBER_VALIDATOR),
+    B2: new FormControl<any>(null, NUMBER_VALIDATOR),
 
-    q8: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B3: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q9: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B4: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q10: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B5: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q11: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B6: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q12: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    B7: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q13: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    a1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q14: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    a2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q15: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    a3: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    a4: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b3: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b4: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b5: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b6: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    b7: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     interviewDateStart: new FormControl<any>(null),
 
   })
-
   stepMap: any = {
     0: {
       controls: []
     },
 
     1: {
-      controls: ["q1"],
+      controls: ["A1"],
       question: [{
-        hindi: "Q1. Have you participated in any market research survey in the past 3 months?",
-        english: "Q1. Have you participated in any market research survey in the past 3 months?"
+        hindi: "Q1. Purpose of Travel",
+        english: "Q1. Purpose of Travel"
       }]
     },
 
     2: {
-      controls: ["q2"],
+      controls: ["A2"],
       question: [{
-        hindi: "Q2. Do you or any member of your household work for any of these organizations?",
-        english: "Q2. Do you or any member of your household work for any of these organizations?"
+        hindi: "Q2. Type	of	Compartment?",
+        english: "Q2. Type	of	Compartment?"
       }]
     },
 
     3: {
-      controls: ["q3"], question: [{
-        hindi: "Q3. Gender.",
-        english: "Q3. Gender."
+      controls: ["A3"], question: [{
+        hindi: "Q3. Please tell us if you are?",
+        english: "Q3.Please tell us if you are?"
       }]
     },
 
     4: {
-      controls: ["q4"],
+      controls: ["A4"],
       question: [{
-        hindi: "Q4. Please take a look at this list and tell me which of these items do you have at home? (It could be owned by you, your family, or provided by the employer or it could be available in the house you live in; but it should be for the use of just you or your family).",
-        english: "Q4. Please take a look at this list and tell me which of these items do you have at home? (It could be owned by you, your family, or provided by the employer or it could be available in the house you live in; but it should be for the use of just you or your family)."
+        hindi: "Q4. Your	Present	Age?",
+        english: "Q4Your	Present	Age?"
       }],
     },
 
     5: {
-      controls: ["q5"],
+      controls: ["A5"],
       question: [{
-        hindi: "Q5.  I would now like to know something about the Chief Wage Earner (CWE) of your household. By Chief Wage Earner, I mean the person who contributes the maximum to the household expenditure. Please tell me the highest level to which he/she has studied?",
-        english: "Q5.  I would now like to know something about the Chief Wage Earner (CWE) of your household. By Chief Wage Earner, I mean the person who contributes the maximum to the household expenditure. Please tell me the highest level to which he/she has studied?"
+        hindi: "Q5.  Record	Gender?",
+        english: "Q5.Record	Gender?"
       }]
     },
-
     6: {
-      controls: ["q6"],
+      controls: ["q6a"],
       question: [{
-        hindi: "Q6. Are you the Chief Wage Earner (CWE) in your household?",
-        english: "Q6. Are you the Chief Wage Earner (CWE) in your household?"
+        hindi: 
+          "q1 Overall Satisfaction with food and services on train",
+      
+        english: [
+          "q1 Overall Satisfaction with food and services on train",
+          "q2 Quality of food and beverages served on train",
+          "q3 Quality of Packaging of the food & beverages served",
+          "q4 Quantity of food and beverages served on train",
+          "q5 Hygiene Level",
+          "q6 Variety in Menu",
+          "q7 Staff Behaviour",
+          "q8 Value for Money"
+      ]
       }]
     },
-
     7: {
-      controls: ["q7"],
+      controls: ["B2"],
       question: [{
-        hindi: "Q7. For classification purpose, may I ask your age in complete years",
-        english: "Q7. For classification purpose, may I ask your age in complete years"
+        hindi: [
+          "q1 Food Preparation (Properly cooked)",
+          "q2 Temperature - Food & Beverages (Hot/Cold/Normal)",
+          "q3 Freshness of Food",
+          "q4 Quality of Rail Neer, Packaged Drinking Water"
+      ],
+        english: [
+          "q1 Food Preparation (Properly cooked)",
+          "q2 Temperature - Food & Beverages (Hot/Cold/Normal)",
+          "q3 Freshness of Food",
+          "q4 Quality of Rail Neer, Packaged Drinking Water"
+      ]
       }]
     },
-
     8: {
-      controls: ["q8"],
+      controls: ["B3"],
       question: [{
-        hindi: "Q8. Can you tell me the highest level to which you have studied?",
-        english: "Q8. Can you tell me the highest level to which you have studied?"
+        hindi: [
+          "q1 Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+          "q2 Availability of Salt, pepper and sugar etc."
+      ],
+        english: [
+          "q1 Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+          "q2 Availability of Salt, pepper and sugar etc."
+      ]
       }]
     },
-
     9: {
-      controls: ["q9"],
+      controls: ["B4"],
       question: [{
-        hindi: "Q9. Can you please tell me your occupation?",
-        english: "Q9. Can you please tell me your occupation?"
+        hindi: [
+          "q1 Brand",
+          "q2 Expiry",
+          "q3 Quality",
+          "q4 Quantity",
+          "q5 Overcharging"
+      ],
+        english: [
+          "q1 Brand",
+          "q2 Expiry",
+          "q3 Quality",
+          "q4 Quantity",
+          "q5 Overcharging"
+      ]
       }]
     },
-
     10: {
-      controls: ["q10"],
+      controls: ["B5"],
       question: [{
-        hindi: "Q10. Which of the following statements best describes your Fast Food consumption behaviour?",
-        english: "Q10. Which of the following statements best describes your Fast Food consumption behaviour?"
+        hindi: [
+          "q1 Cutlery (Stain-free, no marks, not broken/cracked)",
+          "q2 Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
+          "q3 Availability of Tissue/Napkins/Sanitizer"
+      ],
+        english: [
+          "q1 Cutlery (Stain-free, no marks, not broken/cracked)",
+          "q2 Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
+          "q3 Availability of Tissue/Napkins/Sanitizer"
+      ]
       }]
     },
-
     11: {
-      controls: ["q11"],
+      controls: ["B6"],
       question: [{
-        hindi: "Q11. Can you please tell me which of the products you are aware of from Fast Food Chains",
-        english: "Q11. Can you please tell me which of the products you are aware of from Fast Food Chains"
+        hindi: ["Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages"],
+        english: ["Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages"]
       }]
     },
-
     12: {
-      controls: ["q12"], question: [{
-        hindi: "Q12. Can you please tell me which of the fast-food chain brands you are aware of",
-        english: "Q12. Can you please tell me which of the fast-food chain brands you are aware of"
+      controls: ["B7"],
+      question: [{
+        hindi:  [
+          "q1 Menu Card/Rate List",
+          "q2 Complaint/Suggestion Book",
+          "q3 POS Machine",
+          "q4 Issuance of bill"
+      ],
+        english:  [
+          "q1 Menu Card/Rate List",
+          "q2 Complaint/Suggestion Book",
+          "q3 POS Machine",
+          "q4 Issuance of bill"
+      ]
       }]
     },
-
     13: {
-      controls: ["q13"], question: [{
-        hindi: "Q13. When did you last eat/order from Taco Bell?",
-        english: "Q13. When did you last eat/order from Taco Bell?"
+      controls: ["a1"],
+      question: [{
+        hindi: "Q6. Purpose  of  Visit  to  Restaurant",
+        english: "Q6. Purpose  of  Visit  to  Restaurant"
       }]
     },
-
     14: {
-      controls: ["q14"], question: [{
-        hindi: "Q14. Considering your usual Fast Food consumption occasions, which of the following statements best describes your role in purchasing Fast Food for yourself?",
-        english: "Q14. Considering your usual Fast Food consumption occasions, which of the following statements best describes your role in purchasing Fast Food for yourself?"
+      controls: ["a2"],
+      question: [{
+        hindi: "Q6. Please	tell	us	if	you	are?",
+        english: "Q6Please	tell	us	if	you	are?"
       }]
     },
 
     15: {
-      controls: ["q15"],
+      controls: ["a3"],
       question: [{
-        hindi: "Q15. As you have completely understood all the details of this study are you now willing to participate in the study? ",
-        english: "Q15. As you have completely understood all the details of this study are you now willing to participate in the study? "
+        hindi: "Q7. Your	Present	Age?",
+        english: "Q7. Your	Present	Age?"
       }]
     },
 
     16: {
+      controls: ["a4"],
+      question: [{
+        hindi: "Q8. Record	Gender?",
+        english: "Q8. Record	Gender?"
+      }]
+    },
+
+    17: {
+      controls: ["b1"],
+      question: [{
+        hindi: [
+          "q1 Overall Satisfaction with food and services",
+          "q2 Quality of Food and beverages served",
+          "q3 Quality of Packaging of the food & beverages served",
+          "q4 Quantity of food and beverages served",
+          "q5 Hygiene Level",
+          "q6 Variety in Menu",
+          "q7 Staff Behaviour",
+          "q8 Value for Money",
+          "q9 Restaurant Temperature (Hot/Cold/Normal)",
+          "q10 Sufficient number of chairs and tables",
+          "q11 Quality of chairs"
+      ],
+        english: [
+          "q1 Overall Satisfaction with food and services",
+          "q2 Quality of Food and beverages served",
+          "q3 Quality of Packaging of the food & beverages served",
+          "q4 Quantity of food and beverages served",
+          "q5 Hygiene Level",
+          "q6 Variety in Menu",
+          "q7 Staff Behaviour",
+          "q8 Value for Money",
+          "q9 Restaurant Temperature (Hot/Cold/Normal)",
+          "q10 Sufficient number of chairs and tables",
+          "q11 Quality of chairs"
+      ]
+      }]
+    },
+
+    18: {
+      controls: ["b2"],
+      question: [{
+        hindi: [
+          "q1 Food Preparation (Properly cooked)",
+          "q2 Temperature – Food & Beverages (Hot/Cold/Normal)",
+          "q3 Freshness of Food",
+          "q4 Packaging Quality",
+        ],
+        english: [
+          "q1 Food Preparation (Properly cooked)",
+          "q2 Temperature – Food & Beverages (Hot/Cold/Normal)",
+          "q3 Freshness of Food",
+          "q4 Packaging Quality",
+        ]
+      }]
+    },
+
+    19: {
+      controls: ["b3"],
+      question: [{
+        hindi:  [
+          "q1 Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+          "q2 Availability of Salt, pepper and sugar etc."
+      ],
+        english:  [
+          "q1 Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+          "q2 Availability of Salt, pepper and sugar etc."
+      ]
+      }]
+    },
+
+    20: {
+      controls: ["b4"], question: [{
+        hindi: [
+          "q1 Cutlery (Stain-free, no marks, not broken/cracked)",
+          "q2 Food Tray (Free of foreign particles, dust- free, stain- free, not broken/cracked)",
+          "q3 Availability of Tissue/Napkins/Liquid soaps/ Sanitizer",
+          "q4 Cleanliness of chairs, tables, floors, serving counters"
+      ],
+        english: [
+          "q1 Cutlery (Stain-free, no marks, not broken/cracked)",
+          "q2 Food Tray (Free of foreign particles, dust- free, stain- free, not broken/cracked)",
+          "q3 Availability of Tissue/Napkins/Liquid soaps/ Sanitizer",
+          "q4 Cleanliness of chairs, tables, floors, serving counters"
+      ]
+      }]
+    },
+
+    21: {
+      controls: ["b5"], question: [{
+        hindi: [
+          "q1 Variety – Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages",
+          "q2 Choice of Only Roti/Rice/Chowmein – Thali/ Meal combos"
+      ],
+        english: [
+          "q1 Variety – Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages",
+          "q2 Choice of Only Roti/Rice/Chowmein – Thali/ Meal combos"
+      ]
+      }]
+    },
+
+    22: {
+      controls: ["b6"], question: [{
+        hindi:  [
+          "q1 Polite",
+          "q2 Responsiveness",
+          "q3 Staff Appearance",
+          "q4 Explained Menu/Options",
+          "q5 Food Timely Given",
+          "q6 Met Extra Requests (Like extra wrapping layer, tissues)"
+      ],
+        english: [
+          "q1 Polite",
+          "q2 Responsiveness",
+          "q3 Staff Appearance",
+          "q4 Explained Menu/Options",
+          "q5 Food Timely Given",
+          "q6 Met Extra Requests (Like extra wrapping layer, tissues)"
+      ]
+      }]
+    },
+
+    23: {
+      controls: ["b7"],
+      question: [{
+        hindi: [
+          "q1 Menu Card/Rate List",
+          "q2 Complaint/Suggestion Book",
+          "q3 POS Machine",
+          "q4 Issuance of bill"
+      ],
+        english: [
+          "q1 Menu Card/Rate List",
+          "q2 Complaint/Suggestion Book",
+          "q3 POS Machine",
+          "q4 Issuance of bill"
+      ]
+      }]
+    },
+
+    24: {
       controls: ["name", "contactNumber", "surveyorName", "date", "place"],
       question: []
     },
   }
-
-  constructor(private modal: NzModalService, public submissionService: SubmissionService, public toastService: NzMessageService, public auth: AuthService,) {
+  constructor(private modal: NzModalService, public submissionService: SubmissionService, public toastService: NzMessageService,
+     //public auth: AuthService,
+    ) {
 
 
     this.surveyForm.patchValue({
@@ -489,90 +577,90 @@ export class SurveyComponent implements OnInit {
   /**
    * Go to next step
    */
-  async nextStep() {
-    const formValue = this.surveyForm.getRawValue()
+  // async nextStep() {
+  //   const formValue = this.surveyForm.getRawValue()
 
-    // FORM TERMINATION CONDITIONS
+  //   // FORM TERMINATION CONDITIONS
 
-    // Q1
-    if(formValue.q1 && formValue.q1! === 1) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q1
+  //   if(formValue.q1 && formValue.q1! === 1) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q2
-    if(formValue.q2 && [1,2,3,4,5,6].includes(formValue.q2!)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q2
+  //   if(formValue.q2 && [1,2,3,4,5,6].includes(formValue.q2!)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q5
-    if(formValue.q5 && formValue.q4 && (formValue.q4!.length < 7 || ![6, 7].includes(formValue.q5!))) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q5
+  //   if(formValue.q5 && formValue.q4 && (formValue.q4!.length < 7 || ![6, 7].includes(formValue.q5!))) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q7
-    if(formValue.q7 && !(formValue.q7 <= 34 && formValue.q7! >= 18)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q7
+  //   if(formValue.q7 && !(formValue.q7 <= 34 && formValue.q7! >= 18)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q8
-    if(formValue.q8 && [1,2,3,4,5].includes(formValue.q8!)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q8
+  //   if(formValue.q8 && [1,2,3,4,5].includes(formValue.q8!)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q9
-    if(formValue.q9 && [1,2,3,14,17].includes(formValue.q9!)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q9
+  //   if(formValue.q9 && [1,2,3,14,17].includes(formValue.q9!)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q10
-    if(formValue.q10 && [1,3].includes(formValue.q10!)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q10
+  //   if(formValue.q10 && [1,3].includes(formValue.q10!)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q11 => 3,6,7 must be coded and at least 2 more products (at least 5)
-    if(formValue.q11 && (!formValue.q11!.includes(3) || !formValue.q11!.includes(6) || !formValue.q11!.includes(7) || formValue.q11!.length < 5) ) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q11 => 3,6,7 must be coded and at least 2 more products (at least 5)
+  //   if(formValue.q11 && (!formValue.q11!.includes(3) || !formValue.q11!.includes(6) || !formValue.q11!.includes(7) || formValue.q11!.length < 5) ) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q12 => 3 must be coded and at least 4 more brands (at least 5)
-    if( formValue.q12 && (!formValue.q12!.includes(3) || formValue.q12!.length < 5) ) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q12 => 3 must be coded and at least 4 more brands (at least 5)
+  //   if( formValue.q12 && (!formValue.q12!.includes(3) || formValue.q12!.length < 5) ) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q13
-    if( formValue.q13 && formValue.q13! === 1 ) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q13
+  //   if( formValue.q13 && formValue.q13! === 1 ) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q14
-    if( formValue.q14 && (formValue.q14! === 2 || formValue.q14! === 3)) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q14
+  //   if( formValue.q14 && (formValue.q14! === 2 || formValue.q14! === 3)) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    // Q15
-    if( formValue.q15 && formValue.q15! === 2) {
-      this.openSurveyEndModal()
-      return;
-    }
+  //   // Q15
+  //   if( formValue.q15 && formValue.q15! === 2) {
+  //     this.openSurveyEndModal()
+  //     return;
+  //   }
 
-    if (this.step + 1 > this.MAX_STEP) {
-      // Submit
-      await this.submitSurveyForm();
-    } else {
-      this.goToNextStep(formValue)
-    }
-  }
+  //   if (this.step + 1 > this.MAX_STEP) {
+  //     // Submit
+  //     await this.submitSurveyForm();
+  //   } else {
+  //     this.goToNextStep(formValue)
+  //   }
+  // }
 
   /**
    * Find next step according to question skipping logic
@@ -738,9 +826,9 @@ export class SurveyComponent implements OnInit {
   /**
    * Get info of current user
    */
-  get currentUserInfo() {
-    return this.auth.currentUser.getValue()
-  }
+  // get currentUserInfo() {
+  //   return this.auth.currentUser.getValue()
+  // }
 
   /**
    * Typecast Abstract control as Form Control
@@ -760,4 +848,5 @@ export class SurveyComponent implements OnInit {
   get isMobile() {
     return window.innerWidth <= 1200
   }
+
 }

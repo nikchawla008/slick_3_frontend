@@ -26,9 +26,17 @@ const yesNoQuestionsEnglish = [
 const yesNoQuestions = yesNoQuestionsHindi.map((each, index) => ({
   hindi: each, english: yesNoQuestionsEnglish[index]
 }))
-
+const rateQuestion=[
+  "Excellent",
+    "Very Good",
+    "Good",
+    "Average",
+    "Bad",
+    "Not applicable",
+]
 export {
   LOCAL_STORAGE_AUTH_NAME,
   gender,
   yesNoQuestions,
+  rateQuestion,
 }
