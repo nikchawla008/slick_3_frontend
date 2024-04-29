@@ -3,10 +3,12 @@ const LOCAL_STORAGE_AUTH_NAME = 'survetricsUser'
 const genderHindi = [
   "Male",
   "Female",
+  "Transgender",
 ]
 const genderEnglish = [
   "Male",
   "Female",
+  "Transgender",
 ]
 // Gender questions
 const gender = genderHindi.map((each, index) => ({

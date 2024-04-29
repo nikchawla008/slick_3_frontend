@@ -1,95 +1,75 @@
-import {Component} from '@angular/core';
-import {AbstractControl,  FormControl, FormGroup, Validators} from "@angular/forms";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {SubmissionService} from "../../services/submission.service";
-import {NO_WHITE_SPACES_ONLY} from "../../utils/common";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {gender, rateQuestion} from "../../utils/constants";
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { SubmissionService } from 'src/app/services/submission.service';
+import { NO_WHITE_SPACES_ONLY } from 'src/app/utils/common';
+import { gender, rateQuestion } from 'src/app/utils/constants';
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
 const SINGLE_SELECT_VALIDATOR = [Validators.required]
 
 @Component({
-  selector: 'app-survey',
-  templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.scss']
+  selector: 'app-survey2',
+  templateUrl: './survey2.component.html',
+  styleUrls: ['./survey2.component.scss']
 })
-export class SurveyComponent {
+export class Survey2Component {
+  [x: string]: any;
   step: number=0;
-  MAX_STEP: number =39;
-  language : 'english' | 'hindi' ='english'
+  MAX_STEP: number =42;
+  language : 'english' | 'hindi' ='english';
   // mob_hide: boolean = true;
+
   q1Hindi=[
-    "Business / Official / Conference",
-    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
-    "Sight Seeing", "Tourism / Pilgrimage",
-    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
+    "Have arrived after Train journey",
+    "Will undertake Train journey after visit",
+    "Came here while  waiting to receive relative/friend/colleague",
+    "Came here for eating purpose"
   ]
   q1English=[
-    "Business / Official / Conference",
-    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
-    "Sight Seeing", "Tourism / Pilgrimage",
-    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
+    "Have arrived after Train journey",
+    "Will undertake Train journey after visit",
+    "Came here while  waiting to receive relative/friend/colleague",
+    "Came here for eating purpose"
   ]
   q1 = this.q1Hindi.map((each, index) => ({
     hindi: each, english: this.q1English[index]
   }))
   q2Hindi=[
-    "1st AC",
-    "AC 2 Tier",
-    "AC 3 Tier",
-    "EC (Executive Car)",
-    "CC (Chair Car)",
-    "Non AC – Chair Car",
-    "Sleeper"
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
   q2English=[
-    "1st AC",
-    "AC 2 Tier",
-    "AC 3 Tier",
-    "EC (Executive Car)",
-    "CC (Chair Car)",
-    "Non AC – Chair Car",
-    "Sleeper"
+    "Vegetarian",
+    "Satvik/Jain",
+    "Vegan",
+    "Non-vegetarian (eggs and all types of meat)",
+    "Eggetarian (Vegetarian but eat egg & egg products)"
   ]
-
   q2 = this.q2Hindi.map((each, index) => ({
     hindi: each, english: this.q2English[index]
   }))
   q3Hindi=[
-    "Vegetarian",
-    "Satvik/Jain",
-    "Vegan",
-    "Non-vegetarian (eggs and all types of meat)",
-    "Eggetarian (Vegetarian but eat egg & egg products)"
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
   ]
   q3English=[
-    "Vegetarian",
-    "Satvik/Jain",
-    "Vegan",
-    "Non-vegetarian (eggs and all types of meat)",
-    "Eggetarian (Vegetarian but eat egg & egg products)"
+    "18 - 25 years",
+    "26 - 40 years",
+    "41 - 60 years",
+    "61 or more years"
   ]
   q3 = this.q3Hindi.map((each, index) => ({
     hindi: each, english: this.q3English[index]
   }))
-  q4Hindi=[
-    "18 - 25 years",
-    "26 - 40 years",
-    "41 - 60 years",
-    "61 or more years"
-  ]
-  q4English=[
-    "18 - 25 years",
-    "26 - 40 years",
-    "41 - 60 years",
-    "61 or more years"
-  ]
-  q4 = this.q4Hindi.map((each, index) => ({
-    hindi: each, english: this.q4English[index]
-  }))
-  gender1=gender;
+  gender2=gender;
   rateQuestion=rateQuestion;
   surveySubmitStarted = false;
   surveyForm = new FormGroup<any>({
@@ -121,6 +101,12 @@ export class SurveyComponent {
 
     q6h: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
+    q6i: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q6j: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q6k: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
     q7a: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q7b: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
@@ -147,9 +133,17 @@ export class SurveyComponent {
 
     q10b: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q10c: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    q11a: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q11: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    q11b: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q11c: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q11d: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q11e: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q11f: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q12a: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
@@ -159,15 +153,7 @@ export class SurveyComponent {
 
     q12d: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q12e: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
-
-    q13a: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
-
-    q13b: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
-
-    q13c: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
-
-    q13d: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    q13: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q14: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
@@ -182,53 +168,53 @@ export class SurveyComponent {
     1: {
       controls: ["q1"],
       question: [{
-        hindi: "Q1. Purpose of Travel",
-        english: "Q1. Purpose of Travel"
+        hindi: "Q1. Purpose of Visit of Restaurant",
+        english: "Q1. Purpose of Visit of Restaurant"
       }]
     },
 
     2: {
       controls: ["q2"],
       question: [{
-        hindi: "Q2. Type	of	Compartment?",
-        english: "Q2. Type	of	Compartment?"
+        hindi: "Q2. Please	tell	us	if	you	are?",
+        english: "Q2. Please	tell	us	if	you	are?",
       }]
     },
 
     3: {
       controls: ["q3"], question: [{
-        hindi: "Q3. Please tell us if you are?",
-        english: "Q3.Please tell us if you are?"
+        hindi: "Q3. Your	Present	Age?",
+        english: "Q3. Your	Present	Age?"
       }]
     },
 
     4: {
       controls: ["q4"],
       question: [{
-        hindi: "Q4. Your	Present	Age?",
-        english: "Q4Your	Present	Age?"
+        hindi: "Q4. Record	Gender?",
+        english: "Q4. Record	Gender?"
       }],
     },
 
     5: {
       controls: ["q5"],
       question: [{
-        hindi: "Q5.  Record	Gender?",
-        english: "Q5.Record	Gender?"
+        hindi: "In the next few question, we would request you to rate your satisfaction/dissatisfaction with varios attributes",
+        english: "In the next few question, we would request you to rate your satisfaction/dissatisfaction with varios attributes"
       }]
     },
     6: {
       controls: ["q6a"],
       question: [{
-        hindi: "Q6. Overall Satisfaction with food and services on train",
-        english: "Q6. Overall Satisfaction with food and services on train",
+        hindi: "Q6. Overall Satisfaction with food and services ",
+        english: "Q6. Overall Satisfaction with food and services ",
       }]
     },
     7: {
       controls: ["q6b"],
       question: [{
-        hindi: "Q7. Quality of Food and beverages served on train",
-        english:"Q7. Quality of Food and beverages served on train",
+        hindi: "Q7. Quality of Food and beverages served ",
+        english:"Q7. Quality of Food and beverages served",
       }]
     },
     8: {
@@ -241,8 +227,8 @@ export class SurveyComponent {
     9: {
       controls: ["q6d"],
       question: [{
-        hindi: "Q9. Quantity of food and beverages served on train",
-        english: "Q9. Quantity of food and beverages served on train",
+        hindi: "Q9. Quantity of food and beverages served ",
+        english: "Q9. Quantity of food and beverages served ",
       }]
     },
     10: {
@@ -274,191 +260,212 @@ export class SurveyComponent {
       }]
     },
     14: {
-      controls: ["q7a"],
+      controls: ["q6i"],
       question: [{
-        hindi: "Q14. Food Preparation (Properly cooked)",
-        english: "Q14. Food Preparation (Properly cooked)"
+        hindi: "Q14. Restaurant Temperature (Hot/Cold/Normal)",
+        english: "Q14. Restaurant Temperature (Hot/Cold/Normal)"
       }]
     },
 
     15: {
-      controls: ["q7b"],
+      controls: ["q6j"],
       question: [{
-        hindi: "Q15. Temperature - Food & Beverages (Hot/Cold/Normal)",
-        english: "Q15. Temperature - Food & Beverages (Hot/Cold/Normal)",
+        hindi: "Q15. Sufficient number of chairs and tables",
+        english: "Q15. Sufficient number of chairs and tables",
       }]
     },
 
     16: {
-      controls: ["q7c"],
+      controls: ["q6k"],
       question: [{
-        hindi: "Q16. Freshness of Food",
-        english: "Q16. Freshness of Food"
+        hindi: "Q16. Quality of chairs",
+        english: "Q16. Quality of chairs"
       }]
     },
 
     17: {
-      controls: ["q7d"],
+      controls: ["q7a"],
       question: [{
-        hindi: "Q17. Quality of Rail Neer, Packaged Drinking Water",
-        english: "Q17. Quality of Rail Neer, Packaged Drinking Water",
+        hindi: "Q17. Food Preparation (Properly cooked)",
+        english: "Q17. Food Preparation (Properly cooked)",
       }]
     },
 
     18: {
-      controls: ["q8a"],
+      controls: ["q7b"],
       question: [{
-        hindi: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
-        english: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+        hindi: "Q18. Temperature - Food &Beverages(Hot/Cold/Normal)",
+        english: "Q18. Temperature - Food &Beverages(Hot/Cold/Normal)",
           
       }]
     },
 
     19: {
-      controls: ["q8b"],
+      controls: ["q7c"],
       question: [{
-        hindi:  "Q19. Availability of Salt, pepper and sugar etc.",
-        english:  "Q19. Availability of Salt, pepper and sugar etc.",
+        hindi:  "Q19. Freshness of Food",
+        english:  "Q19. Freshness of Food",
       }]
     },
 
     20: {
-      controls: ["q9a"], question: [{
-        hindi: "Q20. Brand",
-        english: "Q20. Brand",
+      controls: ["q7d"], question: [{
+        hindi: "Q20. Packaging Quality",
+        english: "Q20. Packaging Quality",
       }]
     },
 
     21: {
-      controls: ["q9b"], 
+      controls: ["q8a"], 
       question: [{
-        hindi: "Q21. Expiry",
-        english: "Q21. Expiry",
+        hindi: "Q21. Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
+        english: "Q21. Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
       }]
     },
 
     22: {
-      controls: ["q9c"], question: [{
-        hindi:  "Q22. Quality",
-        english: "Q22. Quality",
+      controls: ["q8b"], question: [{
+        hindi:  "Q22. Availability of Salt, pepper and sugar etc.",
+        english: "Q22. Availability of Salt, pepper and sugar etc.",
       }]
     },
 
     23: {
-      controls: ["q9d"],
+      controls: ["q9a"],
       question: [{
-        hindi: "Q23. Quantity",
-        english: "Q23. Quantity",
+        hindi: "Q23. Cutlery (Stain-free, no marks, not broken/cracked)",
+        english: "Q23. Cutlery (Stain-free, no marks, not broken/cracked)",
       }]
     },
     24:{
-      controls: ["q9e"],
+      controls: ["q9b"],
       question:[{
-        hindi:"Q24. Overcharging",
-        english:"Q24. Overcharging"
+        hindi:"Q24. Food Tray (Free of foreign particles, dust- free, stain- free, not broken/cracked)",
+        english:"Q24. Food Tray (Free of foreign particles, dust- free, stain- free, not broken/cracked)"
       }]
     },
     25:{
-      controls: ["q10a"],
+      controls: ["q9c"],
       question:[{
-        hindi:"Q25. Cutlery (Stain-free, no marks, not broken/cracked)",
-        english:"Q25. Cutlery (Stain-free, no marks, not broken/cracked)",
+        hindi:"Q25. Availability of Tissue/Napkins/Liquid soaps/ Sanitizer",
+        english:"Q25. Availability of Tissue/Napkins/Liquid soaps/ Sanitizer",
       }]
     },
     26:{
-      controls: ["q10b"],
+      controls: ["q9d"],
       question:[{
-        hindi:"Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
-        english: "Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
+        hindi:"Q26. Cleanliness of chairs, tables, floors, serving counters",
+        english: "Q26. Cleanliness of chairs, tables, floors, serving counters",
       }]
     },
     27:{
-      controls: ["q10c"],
+      controls: ["q9e"],
       question:[{
-        hindi:"Q27. Availability of Tissue/Napkins/Sanitizer",
-        english:"Q27. Availability of Tissue/Napkins/Sanitizer"
+        hindi:"Q27. Cleanliness of Washroom/ Hand sinks",
+        english:"Q27. Cleanliness of Washroom/ Hand sinks"
       }]
     },
     28:{
-      controls: ["q11"],
+      controls: ["q10a"],
       question:[{
-        hindi:"Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages",
-        english:"Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages"
+        hindi:"Q28. Variety – Thali / Combos, North/ South Indian, Chinese, Continental, Snacks,Dessert, Beverages",
+        english:"Q28. Variety – Thali / Combos, North/ South Indian, Chinese, Continental, Snacks,Dessert, Beverages",
       }]
     },
     29:{
-      controls: ["q12a"],
+      controls: ["q10b"],
       question:[{
-        hindi: "Q29. Polite",
-        english: "Q29. Polite",
+        hindi: "Q29. Choice of Only Roti/Rice/Chowmein - Thali/ Meal combos",
+        english: "Q29. Choice of Only Roti/Rice/Chowmein - Thali/ Meal combos",
       }]
     },
     30:{
-      controls: ["q12b"],
+      controls: ["q11a"],
       question:[{
-        hindi: "Q30. Responsiveness",
-        english: "Q30. Responsiveness",
+        hindi: "Q30. Polite",
+        english: "Q30. Polite",
       }]
     },
     31:{
-      controls: ["q12c"],
+      controls: ["q11b"],
       question:[{
-        hindi: "Q31. Staff Apperance",
-        english: "Q31. Staff Apperance",
+        hindi: "Q31. Responsiveness",
+        english: "Q31. Responsiveness",
       }]
     },
     32:{
-      controls: ["q12d"],
+      controls: ["q11c"],
       question:[{
-        hindi: "Q32. Explained Menu/Options",
-        english: "Q32. Explained Menu/Options",
+        hindi: "Q32. Staff Appearance",
+        english: "Q32. Staff Appearance",
       }]
     },
     33:{
-      controls: ["q12e"],
+      controls: ["q11d"],
       question:[{
-        hindi:"Q33. Food timely given",
-        english:"Q33. Food timely given"
+        hindi:"Q33. Explained Menu/ Options",
+        english:"Q33. Explained Menu/ Options"
       }]
     },
     34:{
-      controls: ["q13a"],
+      controls: ["q11e"],
       question:[{
-        hindi: "Q34. Menu Card/Rate List",
-        english:"Q34.  Menu Card/Rate List",
+        hindi: "Q34. Food Timely Given",
+        english:"Q34.  Food Timely Given",
       }]
     },
     35:{
-      controls: ["q13b"],
+      controls: ["q11f"],
       question:[{
-        hindi:"Q35. Complaint/Suggestion Book",
-        english:"Q35. Complaint/Suggestion Book",
+        hindi:"Q35. Met Extra Requests (Like extra wrapping layer, tissues)",
+        english:"Q35. Met Extra Requests (Like extra wrapping layer, tissues)",
       }]
     },
     36:{
-      controls: ["q13c"],
+      controls: ["q12a"],
       question:[{
-        hindi:"Q36.  POS Machine",
-        english:"Q36.  POS Machine",
+        hindi:"Q36.  Menu Card/Rate List",
+        english:"Q36.  Menu Card/Rate List",
       }]
     },
     37:{
-      controls: ["q13d"],
+      controls: ["q12b"],
       question:[{
-        hindi:"Q37. Issuance of bill",
-        english:"Q37. Issuance of bill"
+        hindi:"Q37. Complaint/Suggestion Book",
+        english:"Q37. Complaint/Suggestion Book"
+      }]
+    },
+    38:{
+      controls: ["q12c"],
+      question:[{
+        hindi:"Q38. POS Machine",
+        english:"Q38. POS Machine"
+      }]
+    },
+    39:{
+      controls: ["q12d"],
+      question:[{
+        hindi:"Q39. Issuance of bill",
+        english:"Q39. Issuance of bill"
       }]
     },
     
-    38:{
+    40:{
+      controls: ["q13"],
+      question:[{
+        hindi:"Q40. Please tell us how much time it took for the Restaurant to serve your meal",
+        english: "Q40. Please tell us how much time it took for the Restaurant to serve your meal",
+      }]
+    },
+    41:{
       controls: ["q14"],
       question:[{
-        hindi:"Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services",
-        english: "Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services",
+        hindi:"Q41. Please give us suggestions that you think could help us in improving the Quality of food and refreshment related services",
+        english: "Q41. Please give us suggestions that you think could help us in improving the Quality of food and refreshment related services",
       }]
     },
 
-    39: {
+    42: {
       controls: ["name", "contactNumber", "surveyorName", "date", "place"],
       question: []
     },
@@ -471,7 +478,7 @@ export class SurveyComponent {
     this.surveyForm.patchValue({
       interviewDateStart: new Date(),
     })
-    this.applyValidations()
+    this['applyValidations']()
 
     navigator.geolocation.getCurrentPosition(() => {
     }, (err) => {
@@ -480,7 +487,6 @@ export class SurveyComponent {
       }
     })
   }
-
   async ngOnInit() {
 
   }
@@ -689,3 +695,5 @@ export class SurveyComponent {
   }
 
 }
+
+

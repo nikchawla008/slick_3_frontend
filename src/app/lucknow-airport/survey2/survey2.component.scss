@@ -1,0 +1,55 @@
+.radio-group {
+    label {
+      display: block;
+      padding: 8px 16px;
+    }
+    .ant-radio {
+      padding: 0 5px;
+    }
+  }
+  
+  nz-select {
+    margin: 0 8px 10px 0;
+    width: 200px;
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
+  
+  }
+  
+  .mob_show {
+    display: none;
+    @media screen and (max-width: 1200px) {
+      display: block;
+    }
+  }
+  
+  .mob_hide {
+    display: block;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+  
+  
+  .table {
+    thead {
+      tr {
+        th {
+          width: 20%
+        }
+      }
+    }
+  }
+  
+  .mobile_options {
+    border-bottom: 1px solid #d5d5d5;
+    margin: 16px 0;
+  }
+  .custom-tree {
+    height: 400px !important; /* Set your desired maximum height */
+    overflow-y: auto; /* Add a scrollbar if content exceeds the maximum height */
+  }
+  
+  
+  

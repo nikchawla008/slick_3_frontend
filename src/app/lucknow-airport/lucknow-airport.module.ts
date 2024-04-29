@@ -16,11 +16,13 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {ChipsModule} from "primeng/chips";
 import {CalendarModule} from "primeng/calendar";
+import { Survey2Component } from './survey2/survey2.component';
 
 
 @NgModule({
   declarations: [
-    SurveyComponent
+    SurveyComponent,
+    Survey2Component
   ],
 	imports: [
 		CommonModule,
