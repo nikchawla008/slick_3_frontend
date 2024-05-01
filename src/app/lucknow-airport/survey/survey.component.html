@@ -1180,6 +1180,10 @@
             <input class="d-block" formControlName="name" pInputText type="text"/>
           </div>
           <div class="form-group mb-4">
+            <label>Email: </label>
+            <input class="d-block" formControlName="email" pInputText type="text"/>
+          </div>
+          <div class="form-group mb-4">
             <label>Contact Number: </label>
             <p-inputMask autocomplete="off"
                          class="d-block" formControlName="contactNumber"
@@ -1189,19 +1193,23 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h5>Appointment Details</h5>
+          <h5>Seat Details</h5>
           <div class="form-group mb-4">
-            <label>Recruiter Name: </label>
-            <input class="d-block" formControlName="surveyorName" pInputText type="text"/>
+            <label>Surveyor PNR: </label>
+            <input class="d-block" formControlName="surveyorPNR" readonly pInputText type="text"/>
           </div>
           <div class="form-group mb-4">
-            <label>Date/Time: </label>
-            <p-calendar [readonlyInput]="true" [showTime]="true" [touchUI]="isMobile" appendTo="body"
-                        dateFormat="D, d/m/y" formControlName="date" styleClass="d-block"></p-calendar>
+            <label>PNR: </label>
+            <input class="d-block" formControlName="userPNR" pInputText type="text"/>
+          </div>
+
+          <div class="form-group mb-4">
+            <label>Seat Number: </label>
+            <input class="d-block" formControlName="seatNumber" pInputText type="text"/>
           </div>
           <div class="form-group mb-4">
-            <label>Place: </label>
-            <input class="d-block" formControlName="place" pInputText type="text"/>
+            <label>Coach Number: </label>
+            <input class="d-block" formControlName="coachNumber" pInputText type="text"/>
           </div>
         </div>
       </div>

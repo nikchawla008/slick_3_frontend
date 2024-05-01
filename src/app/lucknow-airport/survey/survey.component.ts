@@ -1,10 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {SubmissionService} from "../../services/submission.service";
 import {FORM_STATE_MANAGEMENT, NO_WHITE_SPACES_ONLY} from "../../utils/common";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {gender, rateQuestion} from "../../utils/constants";
+import {AuthService} from "../../services/auth/auth.service";
+import {ActivatedRoute} from "@angular/router";
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
@@ -15,8 +17,8 @@ const SINGLE_SELECT_VALIDATOR = [Validators.required]
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.scss']
 })
-export class SurveyComponent {
-  step: number=0;
+export class SurveyComponent implements OnInit {
+  step: number = 0;
   MAX_STEP: number =39;
   language : 'english' | 'hindi' ='english'
   // mob_hide: boolean = true;
@@ -97,6 +99,13 @@ export class SurveyComponent {
     contactNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
     email: new FormControl(null, Validators.email),
 
+    surveyorPNR: new FormControl(null),
+    userPNR: new FormControl(null, STRING_EMPTY_VALIDATOR),
+
+    seatNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
+    coachNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
+    trainId: new FormControl(null, STRING_EMPTY_VALIDATOR),
+
     q1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
@@ -173,7 +182,7 @@ export class SurveyComponent {
 
     q14: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    interviewDateStart: new FormControl<any>(null),
+    interviewStartTime: new FormControl<any>(null),
 
   })
   stepMap: any = {
@@ -461,17 +470,25 @@ export class SurveyComponent {
     },
 
     39: {
-      controls: ["name", "contactNumber", "surveyorName", "date", "place"],
+      controls: ["surveyorPNR", "userPNR", // PNRs
+        "seatNumber", "coachNumber", // Seat details
+        "trainId",
+        "name", "contactNumber", "email",
+      ],
       question: []
     },
   }
-  constructor(private modal: NzModalService, public submissionService: SubmissionService, public toastService: NzMessageService,
-     //public auth: AuthService,
-    ) {
+  constructor(
+    private modal: NzModalService,
+    public submissionService: SubmissionService,
+    public toastService: NzMessageService,
+    public auth: AuthService,
+    public activatedRoute: ActivatedRoute,
+  ) {
 
 
     this.surveyForm.patchValue({
-      interviewDateStart: new Date(),
+      interviewStartTime: new Date(),
     })
     this.applyValidations()
 
@@ -486,11 +503,21 @@ export class SurveyComponent {
   async ngOnInit() {
     const formState = FORM_STATE_MANAGEMENT.restoreFormState()
     if(formState) {
-      console.log(formState)
       this.surveyForm.patchValue(formState.formValues);
-      this.step = formState.step;
+      this.step = formState.currentStep;
+    }
 
-      console.log(this.surveyForm.getRawValue())
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams
+    if(!!currentQueryParams['pnr']) {
+      this.surveyForm.patchValue({
+        surveyorPNR: currentQueryParams['pnr']
+      })
+    }
+
+    if(!!currentQueryParams['train_id']){
+      this.surveyForm.patchValue({
+        trainId: currentQueryParams['train_id']
+      })
     }
   }
 
@@ -560,7 +587,7 @@ export class SurveyComponent {
     this.step = 1
     this.surveyForm.reset()
     this.surveyForm.patchValue({
-      interviewDateStart: new Date(),
+      interviewStartTime: new Date(),
     })
   }
 
@@ -698,17 +725,6 @@ export class SurveyComponent {
 
   get isMobile() {
     return window.innerWidth <= 1200
-  }
-
-  saveFormState() {
-    const formValues = this.surveyForm.getRawValue()
-    const currentStep = this.step
-
-    const formState = {
-      formValues, currentStep
-    }
-
-    localStorage.setItem('formState', JSON.stringify(formState))
   }
 
 }
