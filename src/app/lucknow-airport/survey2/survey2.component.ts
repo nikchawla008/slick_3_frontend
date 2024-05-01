@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { SubmissionService } from 'src/app/services/submission.service';
-import { NO_WHITE_SPACES_ONLY } from 'src/app/utils/common';
-import { gender, rateQuestion } from 'src/app/utils/constants';
+import {Component} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {SubmissionService} from 'src/app/services/submission.service';
+import {NO_WHITE_SPACES_ONLY} from 'src/app/utils/common';
+import {gender, rateQuestion} from 'src/app/utils/constants';
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
@@ -76,7 +76,7 @@ export class Survey2Component {
     name: new FormControl(null, STRING_EMPTY_VALIDATOR),
     contactNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
     email: new FormControl(null, Validators.email),
-  
+
     q1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
@@ -296,7 +296,7 @@ export class Survey2Component {
       question: [{
         hindi: "Q18. Temperature - Food &Beverages(Hot/Cold/Normal)",
         english: "Q18. Temperature - Food &Beverages(Hot/Cold/Normal)",
-          
+
       }]
     },
 
@@ -316,7 +316,7 @@ export class Survey2Component {
     },
 
     21: {
-      controls: ["q8a"], 
+      controls: ["q8a"],
       question: [{
         hindi: "Q21. Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
         english: "Q21. Sufficient Quantity of meal – Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
@@ -449,7 +449,7 @@ export class Survey2Component {
         english:"Q39. Issuance of bill"
       }]
     },
-    
+
     40:{
       controls: ["q13"],
       question:[{
@@ -570,9 +570,9 @@ export class Survey2Component {
    * Disable next button
    */
   get disableNext() {
-    return false
-    // const stepMapControls = this.stepMap[this.step].controls
-    // return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
+    // return false
+    const stepMapControls = this.stepMap[this.step].controls
+    return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
   }
 
   /**
@@ -631,16 +631,17 @@ export class Survey2Component {
    */
   apiCall(requestBody: any) {
     this.surveySubmitStarted = true;
-    this.submissionService.submitForm(requestBody).subscribe({
-      next: async () => {
-        this.surveySubmitStarted = false;
-        this.surveyEndedMessage();
-        // this.toastService.success('Survey Submitted Successfully!!')
-      }, error: (err) => {
-        this.surveySubmitStarted = false;
-        this.toastService.error(err.error.message);
-      }
-    })
+    console.log(requestBody)
+    // this.submissionService.submitForm(requestBody).subscribe({
+    //   next: async () => {
+    //     this.surveySubmitStarted = false;
+    //     this.surveyEndedMessage();
+    //     // this.toastService.success('Survey Submitted Successfully!!')
+    //   }, error: (err) => {
+    //     this.surveySubmitStarted = false;
+    //     this.toastService.error(err.error.message);
+    //   }
+    // })
   }
 
   /**

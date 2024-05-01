@@ -1,14 +1,14 @@
-<div class="card" [formGroup]="surveyForm">
+<div [formGroup]="surveyForm" class="card">
 
   <div *ngIf="step === 0" class="step">
     <div class="card1_image">
-      <img ngSrc="assets/images/img.jpg" height="331" width="422">
+      <img height="331" ngSrc="assets/images/img.jpg" width="422">
     </div>
     <p>
-      Good Morning / Afternoon / Evening.	
-      Dear Passenger! At Indian Railways, we continuously strive to provide excellent services to you. 
-      In order to improve further, we would like you to participate in this survey which is being conducted by IRCTC 
-      with the help of Foresight Research & Consulting Pvt Ltd. Please spend some time telling us about your experience 
+      Good Morning / Afternoon / Evening.
+      Dear Passenger! At Indian Railways, we continuously strive to provide excellent services to you.
+      In order to improve further, we would like you to participate in this survey which is being conducted by IRCTC
+      with the help of Foresight Research & Consulting Pvt Ltd. Please spend some time telling us about your experience
       on this Train. Your feedback is very important to us. This will help us serve you better next time. Thank you.
       Please share following details:
     </p>
@@ -17,7 +17,7 @@
   <div *ngIf="step === 1" class="step">
 
     <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q1">
@@ -29,19 +29,19 @@
 
   <div *ngIf="step === 2" class="step">
     <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q2">
         <label *ngFor="let list of q2; let i = index" [nzValue]="i+1" class="radio"
-          nz-radio>{{ list[language] }}</label>
+               nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
   </div>
 
   <div *ngIf="step === 3" class="step">
     <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q3">
@@ -53,1176 +53,1214 @@
 
   <div *ngIf="step === 4" class="step">
 
-      <div class="card-header">
-        <h2>{{stepMap[step]?.question[0][language]}}</h2>
-      </div>
-      <div class="form-group">
-        <nz-radio-group class="radio-group" formControlName="q4">
-          <label *ngFor="let list of gender2; let i = index" [nzValue]="i+1" class="radio"
-                 nz-radio>{{ list[language] }}</label>
-        </nz-radio-group>
-      </div>
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group">
+      <nz-radio-group class="radio-group" formControlName="q4">
+        <label *ngFor="let list of gender2; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
   </div>
+
   <div *ngIf="step === 5" class="step">
 
     <div class="card-header">
-      <h2>{{stepMap[step]?.question[0][language]}}</h2>
-    </div>
-    
-</div>
-<div *ngIf="step === 6" class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-<div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6a" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6a">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 7  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q6b" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
 
   </div>
- <div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6b">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 8  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6c" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6c">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 9  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6d" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6d">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 10  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6e" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6e">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 11  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6f" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6f">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 12  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6g" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6g">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 13  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q6h" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q6h">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 14  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q6i" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 6" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q6i">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 15  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q6j" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 7" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q6j">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 16  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q6k" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 8" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6c" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6c">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q6k">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 17  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q7a" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 9" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6d" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6d">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q7a">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-        nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 18  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q7b" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 10" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6e" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6e">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q7b">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-        nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 19  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q7c" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 11" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6f" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6f">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q7c">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 20  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q7d" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 12" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6g" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6g">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 13" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6h" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6h">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 14" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6i" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6i">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 15" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6j" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6j">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 16" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q6k" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q6k">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 17" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q7a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q7a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 18" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q7b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q7b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 19" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q7c" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q7c">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 20" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q7d" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="form-group mob_show">
       <nz-radio-group class="radio-group" formControlName="q7d">
         <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{i + 1}} {{ list[language] }}</label>
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
       </nz-radio-group>
     </div>
-</div>
-<div *ngIf="step === 21  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
   </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q8a" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 21" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q8a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q8a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q8a">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-        nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 22  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q8b" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 22" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q8b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q8b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q8b">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 23  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q9a" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 23" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q9a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q9a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q9a">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 24  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q9b" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 24" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q9b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q9b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q9b">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-        nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
-  </div>
-</div>
-<div *ngIf="step === 25  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q9c" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q9c">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 26  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q9d" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q9d">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 27  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q9e" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q9e">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 28  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q10a" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q10a">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 29  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q10b" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q10b">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 30  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11a" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11a">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 31  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11b" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11b">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 32  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11c" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11c">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 33  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11d" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11d">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 34 " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11e" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11e">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 35  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q11f" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q11f">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 36  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q12a" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q12a">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 37  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q12b" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q12b">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 38  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q12c" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q12c">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 39  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q12d" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q12d">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 40  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-  <div class="table">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let list of rateQuestion; let i = index">
-          <input [value]="i+1" formControlName="q13" type="radio">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="form-group mob_show">
-  <nz-radio-group class="radio-group" formControlName="q13">
-    <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-           nz-radio>{{i + 1}} {{ list[language] }}</label>
-  </nz-radio-group>
-</div>
-</div>
-<div *ngIf="step === 41  " class="step">
-  <div class="card-header">
-    <h2>{{stepMap[step]?.question[0][language]}}</h2>
-  </div>
-  <div class="form-group mob_hide">
-    <div class="table">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th *ngFor="let list of rateQuestion">{{list[language]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-        </tr>
-        <tr>
-          <td *ngFor="let list of rateQuestion; let i = index">
-            <input [value]="i+1" formControlName="q14" type="radio">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <div *ngIf="step === 25" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q9c" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q9c">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
     </div>
   </div>
-  <div class="form-group mob_show">
-    <nz-radio-group class="radio-group" formControlName="q14">
-      <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-             nz-radio>{{i + 1}} {{ list[language] }}</label>
-    </nz-radio-group>
+
+  <div *ngIf="step === 26" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q9d" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q9d">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
   </div>
-</div> 
+
+  <div *ngIf="step === 27" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q9e" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q9e">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 28" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q10a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q10a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 29" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q10b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q10b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 30" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 31" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 32" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11c" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11c">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 33" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11d" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11d">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 34" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11e" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11e">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 35" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q11f" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q11f">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 36" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q12a" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q12a">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 37" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q12b" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q12b">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 38" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q12c" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q12c">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 39" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q12d" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q12d">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 40" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q13" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q13">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
+  <div *ngIf="step === 41" class="step">
+    <div class="card-header">
+      <h2>{{ stepMap[step]?.question[0][language] }}</h2>
+    </div>
+    <div class="form-group mob_hide">
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
+          </tr>
+          <tr>
+            <td *ngFor="let list of rateQuestion; let i = index">
+              <input [value]="i+1" formControlName="q14" type="radio">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group mob_show">
+      <nz-radio-group class="radio-group" formControlName="q14">
+        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
+               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
+      </nz-radio-group>
+    </div>
+  </div>
+
   <div *ngIf="step === 42" class="step">
     <div class="card-header">
       <h2>THANK YOU VERY MUCH FOR YOUR COOPERATION.</h2>
@@ -1237,10 +1275,10 @@
           </div>
           <div class="form-group mb-4">
             <label>Contact Number: </label>
-            <p-inputMask class="d-block"
-                         type="tel" mask="(999) 999-9999"
-                         placeholder="(xxx) xxx-xxxx"
-                         formControlName="contactNumber" inputmode="numeric"  autocomplete="off" >
+            <p-inputMask autocomplete="off"
+                         class="d-block" formControlName="contactNumber"
+                         inputmode="numeric"
+                         mask="(999) 999-9999" placeholder="(xxx) xxx-xxxx" type="tel">
             </p-inputMask>
           </div>
         </div>
@@ -1252,7 +1290,8 @@
           </div>
           <div class="form-group mb-4">
             <label>Date/Time: </label>
-            <p-calendar appendTo="body" styleClass="d-block" [touchUI]="isMobile" formControlName="date" dateFormat="D, d/m/y" [readonlyInput]="true" [showTime]="true"></p-calendar>
+            <p-calendar [readonlyInput]="true" [showTime]="true" [touchUI]="isMobile" appendTo="body"
+                        dateFormat="D, d/m/y" formControlName="date" styleClass="d-block"></p-calendar>
           </div>
           <div class="form-group mb-4">
             <label>Place: </label>
@@ -1263,14 +1302,13 @@
     </div>
   </div>
 
-
   <div class="button-section">
-    <button [disabled]="[0].includes(step)" (click)="prevStep()" nz-button nzType="primary">Back</button>
-<!--    <span class="step-counter">{{ step }}/{{ MAX_STEP }}</span>-->
-    <button *ngIf="![0].includes(step)" (click)="clearControl()" nz-button nzType="dashed">Clear</button>
-<!--    <button *ngIf="![0, 1].includes(step)" (click)="switchLanguage()" nz-button nzType="dashed">Switch Language</button>-->
+    <button (click)="prevStep()" [disabled]="[0].includes(step)" nz-button nzType="primary">Back</button>
+    <!--    <span class="step-counter">{{ step }}/{{ MAX_STEP }}</span>-->
+    <button (click)="clearControl()" *ngIf="![0].includes(step)" nz-button nzType="dashed">Clear</button>
+    <!--    <button *ngIf="![0, 1].includes(step)" (click)="switchLanguage()" nz-button nzType="dashed">Switch Language</button>-->
     <button (click)="nextStep()" [disabled]="disableNext" [nzLoading]="surveySubmitStarted" nz-button nzType="primary">
-      <ng-container *ngIf="step === MAX_STEP; else showNext" >
+      <ng-container *ngIf="step === MAX_STEP; else showNext">
         Submit
       </ng-container>
       <ng-template #showNext>

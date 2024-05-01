@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl,  FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {SubmissionService} from "../../services/submission.service";
 import {NO_WHITE_SPACES_ONLY} from "../../utils/common";
@@ -96,7 +96,7 @@ export class SurveyComponent {
     name: new FormControl(null, STRING_EMPTY_VALIDATOR),
     contactNumber: new FormControl(null, STRING_EMPTY_VALIDATOR),
     email: new FormControl(null, Validators.email),
-  
+
     q1: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q2: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
@@ -310,7 +310,7 @@ export class SurveyComponent {
       question: [{
         hindi: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
         english: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
-          
+
       }]
     },
 
@@ -330,7 +330,7 @@ export class SurveyComponent {
     },
 
     21: {
-      controls: ["q9b"], 
+      controls: ["q9b"],
       question: [{
         hindi: "Q21. Expiry",
         english: "Q21. Expiry",
@@ -449,7 +449,7 @@ export class SurveyComponent {
         english:"Q37. Issuance of bill"
       }]
     },
-    
+
     38:{
       controls: ["q14"],
       question:[{
@@ -564,9 +564,9 @@ export class SurveyComponent {
    * Disable next button
    */
   get disableNext() {
-    return false
-    // const stepMapControls = this.stepMap[this.step].controls
-    // return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
+    // return false
+    const stepMapControls = this.stepMap[this.step].controls
+    return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
   }
 
   /**
@@ -625,16 +625,17 @@ export class SurveyComponent {
    */
   apiCall(requestBody: any) {
     this.surveySubmitStarted = true;
-    this.submissionService.submitForm(requestBody).subscribe({
-      next: async () => {
-        this.surveySubmitStarted = false;
-        this.surveyEndedMessage();
-        // this.toastService.success('Survey Submitted Successfully!!')
-      }, error: (err) => {
-        this.surveySubmitStarted = false;
-        this.toastService.error(err.error.message);
-      }
-    })
+    console.log(requestBody)
+    // this.submissionService.submitForm(requestBody).subscribe({
+    //   next: async () => {
+    //     this.surveySubmitStarted = false;
+    //     this.surveyEndedMessage();
+    //     // this.toastService.success('Survey Submitted Successfully!!')
+    //   }, error: (err) => {
+    //     this.surveySubmitStarted = false;
+    //     this.toastService.error(err.error.message);
+    //   }
+    // })
   }
 
   /**
