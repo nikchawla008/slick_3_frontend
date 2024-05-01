@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {SubmissionService} from "../../services/submission.service";
-import {NO_WHITE_SPACES_ONLY} from "../../utils/common";
+import {FORM_STATE_MANAGEMENT, NO_WHITE_SPACES_ONLY} from "../../utils/common";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {gender, rateQuestion} from "../../utils/constants";
 
@@ -110,6 +110,8 @@ export class SurveyComponent {
     q6a: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q6b: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+
+    q6c: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     q6d: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
@@ -482,7 +484,14 @@ export class SurveyComponent {
   }
 
   async ngOnInit() {
+    const formState = FORM_STATE_MANAGEMENT.restoreFormState()
+    if(formState) {
+      console.log(formState)
+      this.surveyForm.patchValue(formState.formValues);
+      this.step = formState.step;
 
+      console.log(this.surveyForm.getRawValue())
+    }
   }
 
 
@@ -499,6 +508,8 @@ export class SurveyComponent {
     } else {
       this.goToNextStep(formValue)
     }
+
+    FORM_STATE_MANAGEMENT.saveFormState(this.surveyForm.getRawValue(), this.step)
   }
 
   /**
@@ -687,6 +698,17 @@ export class SurveyComponent {
 
   get isMobile() {
     return window.innerWidth <= 1200
+  }
+
+  saveFormState() {
+    const formValues = this.surveyForm.getRawValue()
+    const currentStep = this.step
+
+    const formState = {
+      formValues, currentStep
+    }
+
+    localStorage.setItem('formState', JSON.stringify(formState))
   }
 
 }
