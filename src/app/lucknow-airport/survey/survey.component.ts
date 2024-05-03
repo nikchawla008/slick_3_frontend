@@ -180,7 +180,7 @@ export class SurveyComponent implements OnInit {
 
     q13d: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
-    q14: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
+    q14: new FormControl<any>(null),
 
     interviewStartTime: new FormControl<any>(null),
 

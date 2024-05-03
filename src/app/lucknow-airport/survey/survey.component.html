@@ -1139,31 +1139,7 @@
       <h2>{{ stepMap[step]?.question[0][language] }}</h2>
     </div>
     <div class="form-group mob_hide">
-      <div class="table">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th *ngFor="let list of rateQuestion">{{ list[language] }}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td *ngFor="let list of rateQuestion; let i = index">{{ i + 1 }}</td>
-          </tr>
-          <tr>
-            <td *ngFor="let list of rateQuestion; let i = index">
-              <input [value]="i+1" formControlName="q14" type="radio">
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="form-group mob_show">
-      <nz-radio-group class="radio-group" formControlName="q14">
-        <label *ngFor="let list of rateQuestion; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ i + 1 }} {{ list[language] }}</label>
-      </nz-radio-group>
+      <input class="d-block" formControlName="q14" pInputText type="text"/>
     </div>
   </div>
 
