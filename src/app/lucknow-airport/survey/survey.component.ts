@@ -1,98 +1,112 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {SubmissionService} from "../../services/submission.service";
-import {FORM_STATE_MANAGEMENT, NO_WHITE_SPACES_ONLY} from "../../utils/common";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {gender, rateQuestion} from "../../utils/constants";
-import {AuthService} from "../../services/auth/auth.service";
-import {ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { SubmissionService } from '../../services/submission.service';
+import {
+  FORM_STATE_MANAGEMENT,
+  NO_WHITE_SPACES_ONLY,
+} from '../../utils/common';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { gender, rateQuestion } from '../../utils/constants';
+import { AuthService } from '../../services/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
-const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY]
-const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)]
-const SINGLE_SELECT_VALIDATOR = [Validators.required]
+const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY];
+const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)];
+const SINGLE_SELECT_VALIDATOR = [Validators.required];
 
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.scss']
+  styleUrls: ['./survey.component.scss'],
 })
 export class SurveyComponent implements OnInit {
   step: number = 0;
-  MAX_STEP: number =39;
-  language : 'english' | 'hindi' ='english'
-  // mob_hide: boolean = true;
-  q1Hindi=[
-    "Business / Official / Conference",
-    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
-    "Sight Seeing", "Tourism / Pilgrimage",
-    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
-  ]
-  q1English=[
-    "Business / Official / Conference",
-    "Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)",
-    "Sight Seeing", "Tourism / Pilgrimage",
-    "Others	(Medical Visit/Educational	Visit		etc. Please Specify "
-  ]
+  MAX_STEP: number = 39;
+  language: 'english' | 'hindi' = 'english';
+
+  q1Hindi = [
+    'Business / Official / Conference',
+    'Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)',
+    'Sight Seeing',
+    'Tourism / Pilgrimage',
+    'Others	(Medical Visit/Educational	Visit		etc. Please Specify ',
+  ];
+  q1English = [
+    'Business / Official / Conference',
+    'Social Purpose (Wedding/Function/Meeting Family/Friends/Home visit)',
+    'Sight Seeing',
+    'Tourism / Pilgrimage',
+    'Others	(Medical Visit/Educational	Visit		etc. Please Specify ',
+  ];
   q1 = this.q1Hindi.map((each, index) => ({
-    hindi: each, english: this.q1English[index]
-  }))
-  q2Hindi=[
-    "1st AC",
-    "AC 2 Tier",
-    "AC 3 Tier",
-    "EC (Executive Car)",
-    "CC (Chair Car)",
-    "Non AC – Chair Car",
-    "Sleeper"
-  ]
-  q2English=[
-    "1st AC",
-    "AC 2 Tier",
-    "AC 3 Tier",
-    "EC (Executive Car)",
-    "CC (Chair Car)",
-    "Non AC – Chair Car",
-    "Sleeper"
-  ]
+    hindi: each,
+    english: this.q1English[index],
+  }));
+  q2Hindi = [
+    '1st AC',
+    'AC 2 Tier',
+    'AC 3 Tier',
+    'EC (Executive Car)',
+    'CC (Chair Car)',
+    'Non AC – Chair Car',
+    'Sleeper',
+  ];
+  q2English = [
+    '1st AC',
+    'AC 2 Tier',
+    'AC 3 Tier',
+    'EC (Executive Car)',
+    'CC (Chair Car)',
+    'Non AC – Chair Car',
+    'Sleeper',
+  ];
 
   q2 = this.q2Hindi.map((each, index) => ({
-    hindi: each, english: this.q2English[index]
-  }))
-  q3Hindi=[
-    "Vegetarian",
-    "Satvik/Jain",
-    "Vegan",
-    "Non-vegetarian (eggs and all types of meat)",
-    "Eggetarian (Vegetarian but eat egg & egg products)"
-  ]
-  q3English=[
-    "Vegetarian",
-    "Satvik/Jain",
-    "Vegan",
-    "Non-vegetarian (eggs and all types of meat)",
-    "Eggetarian (Vegetarian but eat egg & egg products)"
-  ]
+    hindi: each,
+    english: this.q2English[index],
+  }));
+  q3Hindi = [
+    'Vegetarian',
+    'Satvik/Jain',
+    'Vegan',
+    'Non-vegetarian (eggs and all types of meat)',
+    'Eggetarian (Vegetarian but eat egg & egg products)',
+  ];
+  q3English = [
+    'Vegetarian',
+    'Satvik/Jain',
+    'Vegan',
+    'Non-vegetarian (eggs and all types of meat)',
+    'Eggetarian (Vegetarian but eat egg & egg products)',
+  ];
   q3 = this.q3Hindi.map((each, index) => ({
-    hindi: each, english: this.q3English[index]
-  }))
-  q4Hindi=[
-    "18 - 25 years",
-    "26 - 40 years",
-    "41 - 60 years",
-    "61 or more years"
-  ]
-  q4English=[
-    "18 - 25 years",
-    "26 - 40 years",
-    "41 - 60 years",
-    "61 or more years"
-  ]
+    hindi: each,
+    english: this.q3English[index],
+  }));
+  q4Hindi = [
+    '18 - 25 years',
+    '26 - 40 years',
+    '41 - 60 years',
+    '61 or more years',
+  ];
+  q4English = [
+    '18 - 25 years',
+    '26 - 40 years',
+    '41 - 60 years',
+    '61 or more years',
+  ];
   q4 = this.q4Hindi.map((each, index) => ({
-    hindi: each, english: this.q4English[index]
-  }))
-  gender1=gender;
-  rateQuestion=rateQuestion;
+    hindi: each,
+    english: this.q4English[index],
+  }));
+  gender1 = gender;
+  rateQuestion = rateQuestion;
   surveySubmitStarted = false;
   surveyForm = new FormGroup<any>({
     name: new FormControl(null, STRING_EMPTY_VALIDATOR),
@@ -183,360 +197,454 @@ export class SurveyComponent implements OnInit {
     q14: new FormControl<any>(null, SINGLE_SELECT_VALIDATOR),
 
     interviewStartTime: new FormControl<any>(null),
-
-  })
+  });
   stepMap: any = {
     0: {
-      controls: []
+      controls: [],
     },
 
     1: {
-      controls: ["q1"],
-      question: [{
-        hindi: "Q1. Purpose of Travel",
-        english: "Q1. Purpose of Travel"
-      }]
+      controls: ['q1'],
+      question: [
+        {
+          hindi: 'Q1. Purpose of Travel',
+          english: 'Q1. Purpose of Travel',
+        },
+      ],
     },
 
     2: {
-      controls: ["q2"],
-      question: [{
-        hindi: "Q2. Type	of	Compartment?",
-        english: "Q2. Type	of	Compartment?"
-      }]
+      controls: ['q2'],
+      question: [
+        {
+          hindi: 'Q2. Type	of	Compartment?',
+          english: 'Q2. Type	of	Compartment?',
+        },
+      ],
     },
 
     3: {
-      controls: ["q3"], question: [{
-        hindi: "Q3. Please tell us if you are?",
-        english: "Q3.Please tell us if you are?"
-      }]
+      controls: ['q3'],
+      question: [
+        {
+          hindi: 'Q3. Please tell us if you are?',
+          english: 'Q3.Please tell us if you are?',
+        },
+      ],
     },
 
     4: {
-      controls: ["q4"],
-      question: [{
-        hindi: "Q4. Your	Present	Age?",
-        english: "Q4Your	Present	Age?"
-      }],
+      controls: ['q4'],
+      question: [
+        {
+          hindi: 'Q4. Your	Present	Age?',
+          english: 'Q4Your	Present	Age?',
+        },
+      ],
     },
 
     5: {
-      controls: ["q5"],
-      question: [{
-        hindi: "Q5.  Record	Gender?",
-        english: "Q5.Record	Gender?"
-      }]
+      controls: ['q5'],
+      question: [
+        {
+          hindi: 'Q5.  Record	Gender?',
+          english: 'Q5.Record	Gender?',
+        },
+      ],
     },
     6: {
-      controls: ["q6a"],
-      question: [{
-        hindi: "Q6. Overall Satisfaction with food and services on train",
-        english: "Q6. Overall Satisfaction with food and services on train",
-      }]
+      controls: ['q6a'],
+      question: [
+        {
+          hindi: 'Q6. Overall Satisfaction with food and services on train',
+          english: 'Q6. Overall Satisfaction with food and services on train',
+        },
+      ],
     },
     7: {
-      controls: ["q6b"],
-      question: [{
-        hindi: "Q7. Quality of Food and beverages served on train",
-        english:"Q7. Quality of Food and beverages served on train",
-      }]
+      controls: ['q6b'],
+      question: [
+        {
+          hindi: 'Q7. Quality of Food and beverages served on train',
+          english: 'Q7. Quality of Food and beverages served on train',
+        },
+      ],
     },
     8: {
-      controls: ["q6c"],
-      question: [{
-        hindi:"Q8. Quality of Packaging of the food & beverages served",
-        english: "Q8. Quality of Packaging of the food & beverages served",
-      }]
+      controls: ['q6c'],
+      question: [
+        {
+          hindi: 'Q8. Quality of Packaging of the food & beverages served',
+          english: 'Q8. Quality of Packaging of the food & beverages served',
+        },
+      ],
     },
     9: {
-      controls: ["q6d"],
-      question: [{
-        hindi: "Q9. Quantity of food and beverages served on train",
-        english: "Q9. Quantity of food and beverages served on train",
-      }]
+      controls: ['q6d'],
+      question: [
+        {
+          hindi: 'Q9. Quantity of food and beverages served on train',
+          english: 'Q9. Quantity of food and beverages served on train',
+        },
+      ],
     },
     10: {
-      controls: ["q6e"],
-      question: [{
-        hindi: "Q10. Hygiene Level",
-        english: "Q10. Hygiene Level",
-      }]
+      controls: ['q6e'],
+      question: [
+        {
+          hindi: 'Q10. Hygiene Level',
+          english: 'Q10. Hygiene Level',
+        },
+      ],
     },
     11: {
-      controls: ["q6f"],
-      question: [{
-        hindi: "Q11. Variety in Menu",
-        english: "Q11. Variety in Menu",
-      }]
+      controls: ['q6f'],
+      question: [
+        {
+          hindi: 'Q11. Variety in Menu',
+          english: 'Q11. Variety in Menu',
+        },
+      ],
     },
     12: {
-      controls: ["q6g"],
-      question: [{
-        hindi:  "Q12. Staff Behaviour",
-        english:  "Q12. Staff Behaviour",
-      }]
+      controls: ['q6g'],
+      question: [
+        {
+          hindi: 'Q12. Staff Behaviour',
+          english: 'Q12. Staff Behaviour',
+        },
+      ],
     },
     13: {
-      controls: ["q6h"],
-      question: [{
-        hindi: "Q13. Value for Money",
-        english: "Q13. Value for Money"
-      }]
+      controls: ['q6h'],
+      question: [
+        {
+          hindi: 'Q13. Value for Money',
+          english: 'Q13. Value for Money',
+        },
+      ],
     },
     14: {
-      controls: ["q7a"],
-      question: [{
-        hindi: "Q14. Food Preparation (Properly cooked)",
-        english: "Q14. Food Preparation (Properly cooked)"
-      }]
+      controls: ['q7a'],
+      question: [
+        {
+          hindi: 'Q14. Food Preparation (Properly cooked)',
+          english: 'Q14. Food Preparation (Properly cooked)',
+        },
+      ],
     },
 
     15: {
-      controls: ["q7b"],
-      question: [{
-        hindi: "Q15. Temperature - Food & Beverages (Hot/Cold/Normal)",
-        english: "Q15. Temperature - Food & Beverages (Hot/Cold/Normal)",
-      }]
+      controls: ['q7b'],
+      question: [
+        {
+          hindi: 'Q15. Temperature - Food & Beverages (Hot/Cold/Normal)',
+          english: 'Q15. Temperature - Food & Beverages (Hot/Cold/Normal)',
+        },
+      ],
     },
 
     16: {
-      controls: ["q7c"],
-      question: [{
-        hindi: "Q16. Freshness of Food",
-        english: "Q16. Freshness of Food"
-      }]
+      controls: ['q7c'],
+      question: [
+        {
+          hindi: 'Q16. Freshness of Food',
+          english: 'Q16. Freshness of Food',
+        },
+      ],
     },
 
     17: {
-      controls: ["q7d"],
-      question: [{
-        hindi: "Q17. Quality of Rail Neer, Packaged Drinking Water",
-        english: "Q17. Quality of Rail Neer, Packaged Drinking Water",
-      }]
+      controls: ['q7d'],
+      question: [
+        {
+          hindi: 'Q17. Quality of Rail Neer, Packaged Drinking Water',
+          english: 'Q17. Quality of Rail Neer, Packaged Drinking Water',
+        },
+      ],
     },
 
     18: {
-      controls: ["q8a"],
-      question: [{
-        hindi: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
-        english: "Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)",
-
-      }]
+      controls: ['q8a'],
+      question: [
+        {
+          hindi:
+            'Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)',
+          english:
+            'Q18. Sufficient Quantity of meal - Thali / Combos, Snacks (Sandwiches, Pizza, Kachori, etc.), Dessert (Ice cream, Mithai, Kulfis, etc.)',
+        },
+      ],
     },
 
     19: {
-      controls: ["q8b"],
-      question: [{
-        hindi:  "Q19. Availability of Salt, pepper and sugar etc.",
-        english:  "Q19. Availability of Salt, pepper and sugar etc.",
-      }]
+      controls: ['q8b'],
+      question: [
+        {
+          hindi: 'Q19. Availability of Salt, pepper and sugar etc.',
+          english: 'Q19. Availability of Salt, pepper and sugar etc.',
+        },
+      ],
     },
 
     20: {
-      controls: ["q9a"], question: [{
-        hindi: "Q20. Brand",
-        english: "Q20. Brand",
-      }]
+      controls: ['q9a'],
+      question: [
+        {
+          hindi: 'Q20. Brand',
+          english: 'Q20. Brand',
+        },
+      ],
     },
 
     21: {
-      controls: ["q9b"],
-      question: [{
-        hindi: "Q21. Expiry",
-        english: "Q21. Expiry",
-      }]
+      controls: ['q9b'],
+      question: [
+        {
+          hindi: 'Q21. Expiry',
+          english: 'Q21. Expiry',
+        },
+      ],
     },
 
     22: {
-      controls: ["q9c"], question: [{
-        hindi:  "Q22. Quality",
-        english: "Q22. Quality",
-      }]
+      controls: ['q9c'],
+      question: [
+        {
+          hindi: 'Q22. Quality',
+          english: 'Q22. Quality',
+        },
+      ],
     },
 
     23: {
-      controls: ["q9d"],
-      question: [{
-        hindi: "Q23. Quantity",
-        english: "Q23. Quantity",
-      }]
+      controls: ['q9d'],
+      question: [
+        {
+          hindi: 'Q23. Quantity',
+          english: 'Q23. Quantity',
+        },
+      ],
     },
-    24:{
-      controls: ["q9e"],
-      question:[{
-        hindi:"Q24. Overcharging",
-        english:"Q24. Overcharging"
-      }]
+    24: {
+      controls: ['q9e'],
+      question: [
+        {
+          hindi: 'Q24. Overcharging',
+          english: 'Q24. Overcharging',
+        },
+      ],
     },
-    25:{
-      controls: ["q10a"],
-      question:[{
-        hindi:"Q25. Cutlery (Stain-free, no marks, not broken/cracked)",
-        english:"Q25. Cutlery (Stain-free, no marks, not broken/cracked)",
-      }]
+    25: {
+      controls: ['q10a'],
+      question: [
+        {
+          hindi: 'Q25. Cutlery (Stain-free, no marks, not broken/cracked)',
+          english: 'Q25. Cutlery (Stain-free, no marks, not broken/cracked)',
+        },
+      ],
     },
-    26:{
-      controls: ["q10b"],
-      question:[{
-        hindi:"Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
-        english: "Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)",
-      }]
+    26: {
+      controls: ['q10b'],
+      question: [
+        {
+          hindi:
+            'Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)',
+          english:
+            'Q26. Food Tray (Free of foreign particles, dust-free, stain-free, not broken/cracked)',
+        },
+      ],
     },
-    27:{
-      controls: ["q10c"],
-      question:[{
-        hindi:"Q27. Availability of Tissue/Napkins/Sanitizer",
-        english:"Q27. Availability of Tissue/Napkins/Sanitizer"
-      }]
+    27: {
+      controls: ['q10c'],
+      question: [
+        {
+          hindi: 'Q27. Availability of Tissue/Napkins/Sanitizer',
+          english: 'Q27. Availability of Tissue/Napkins/Sanitizer',
+        },
+      ],
     },
-    28:{
-      controls: ["q11"],
-      question:[{
-        hindi:"Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages",
-        english:"Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages"
-      }]
+    28: {
+      controls: ['q11'],
+      question: [
+        {
+          hindi:
+            'Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages',
+          english:
+            'Q28. Variety - Thali / Combos, North/ South Indian, Chinese, Continental, Snacks, Dessert, Beverages',
+        },
+      ],
     },
-    29:{
-      controls: ["q12a"],
-      question:[{
-        hindi: "Q29. Polite",
-        english: "Q29. Polite",
-      }]
+    29: {
+      controls: ['q12a'],
+      question: [
+        {
+          hindi: 'Q29. Polite',
+          english: 'Q29. Polite',
+        },
+      ],
     },
-    30:{
-      controls: ["q12b"],
-      question:[{
-        hindi: "Q30. Responsiveness",
-        english: "Q30. Responsiveness",
-      }]
+    30: {
+      controls: ['q12b'],
+      question: [
+        {
+          hindi: 'Q30. Responsiveness',
+          english: 'Q30. Responsiveness',
+        },
+      ],
     },
-    31:{
-      controls: ["q12c"],
-      question:[{
-        hindi: "Q31. Staff Apperance",
-        english: "Q31. Staff Apperance",
-      }]
+    31: {
+      controls: ['q12c'],
+      question: [
+        {
+          hindi: 'Q31. Staff Apperance',
+          english: 'Q31. Staff Apperance',
+        },
+      ],
     },
-    32:{
-      controls: ["q12d"],
-      question:[{
-        hindi: "Q32. Explained Menu/Options",
-        english: "Q32. Explained Menu/Options",
-      }]
+    32: {
+      controls: ['q12d'],
+      question: [
+        {
+          hindi: 'Q32. Explained Menu/Options',
+          english: 'Q32. Explained Menu/Options',
+        },
+      ],
     },
-    33:{
-      controls: ["q12e"],
-      question:[{
-        hindi:"Q33. Food timely given",
-        english:"Q33. Food timely given"
-      }]
+    33: {
+      controls: ['q12e'],
+      question: [
+        {
+          hindi: 'Q33. Food timely given',
+          english: 'Q33. Food timely given',
+        },
+      ],
     },
-    34:{
-      controls: ["q13a"],
-      question:[{
-        hindi: "Q34. Menu Card/Rate List",
-        english:"Q34.  Menu Card/Rate List",
-      }]
+    34: {
+      controls: ['q13a'],
+      question: [
+        {
+          hindi: 'Q34. Menu Card/Rate List',
+          english: 'Q34.  Menu Card/Rate List',
+        },
+      ],
     },
-    35:{
-      controls: ["q13b"],
-      question:[{
-        hindi:"Q35. Complaint/Suggestion Book",
-        english:"Q35. Complaint/Suggestion Book",
-      }]
+    35: {
+      controls: ['q13b'],
+      question: [
+        {
+          hindi: 'Q35. Complaint/Suggestion Book',
+          english: 'Q35. Complaint/Suggestion Book',
+        },
+      ],
     },
-    36:{
-      controls: ["q13c"],
-      question:[{
-        hindi:"Q36.  POS Machine",
-        english:"Q36.  POS Machine",
-      }]
+    36: {
+      controls: ['q13c'],
+      question: [
+        {
+          hindi: 'Q36.  POS Machine',
+          english: 'Q36.  POS Machine',
+        },
+      ],
     },
-    37:{
-      controls: ["q13d"],
-      question:[{
-        hindi:"Q37. Issuance of bill",
-        english:"Q37. Issuance of bill"
-      }]
+    37: {
+      controls: ['q13d'],
+      question: [
+        {
+          hindi: 'Q37. Issuance of bill',
+          english: 'Q37. Issuance of bill',
+        },
+      ],
     },
 
-    38:{
-      controls: ["q14"],
-      question:[{
-        hindi:"Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services",
-        english: "Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services",
-      }]
+    38: {
+      controls: ['q14'],
+      question: [
+        {
+          hindi:
+            'Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services',
+          english:
+            'Q38. Please give us a sugestion that you think could help us improving the quality of food and refreshment related services',
+        },
+      ],
     },
 
     39: {
-      controls: ["surveyorPNR", "userPNR", // PNRs
-        "seatNumber", "coachNumber", // Seat details
-        "trainId",
-        "name", "contactNumber", "email",
+      controls: [
+        'surveyorPNR',
+        'userPNR', // PNRs
+        'seatNumber',
+        'coachNumber', // Seat details
+        'trainId',
+        'name',
+        'contactNumber',
+        'email',
       ],
-      question: []
+      question: [],
     },
-  }
+  };
   constructor(
     private modal: NzModalService,
     public submissionService: SubmissionService,
     public toastService: NzMessageService,
     public auth: AuthService,
-    public activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute
   ) {
-
-
     this.surveyForm.patchValue({
       interviewStartTime: new Date(),
-    })
-    this.applyValidations()
+    });
+    this.applyValidations();
 
-    navigator.geolocation.getCurrentPosition(() => {
-    }, (err) => {
-      if (err.code === 1) {
-        this.toastService.error('Please allow location permissions on this browser')
+    navigator.geolocation.getCurrentPosition(
+      () => {},
+      (err) => {
+        if (err.code === 1) {
+          this.toastService.error(
+            'Please allow location permissions on this browser'
+          );
+        }
       }
-    })
+    );
   }
 
   async ngOnInit() {
-    const formState = FORM_STATE_MANAGEMENT.restoreFormState()
-    if(formState) {
+    const formState = FORM_STATE_MANAGEMENT.restoreFormState();
+    if (formState) {
       this.surveyForm.patchValue(formState.formValues);
       this.step = formState.currentStep;
     }
 
-    const currentQueryParams = this.activatedRoute.snapshot.queryParams
-    if(!!currentQueryParams['pnr']) {
+    const currentQueryParams = this.activatedRoute.snapshot.queryParams;
+    if (!!currentQueryParams['pnr']) {
       this.surveyForm.patchValue({
-        surveyorPNR: currentQueryParams['pnr']
-      })
+        surveyorPNR: currentQueryParams['pnr'],
+      });
     }
 
-    if(!!currentQueryParams['train_id']){
+    if (!!currentQueryParams['train_id']) {
       this.surveyForm.patchValue({
-        trainId: currentQueryParams['train_id']
-      })
+        trainId: currentQueryParams['train_id'],
+      });
     }
   }
-
 
   /**
    * Go to next step
    */
   async nextStep() {
-    const formValue = this.surveyForm.getRawValue()
+    const formValue = this.surveyForm.getRawValue();
 
     // FORM TERMINATION CONDITIONS
     if (this.step + 1 > this.MAX_STEP) {
       // Submit
       await this.submitSurveyForm();
     } else {
-      this.goToNextStep(formValue)
+      this.goToNextStep(formValue);
     }
 
-    FORM_STATE_MANAGEMENT.saveFormState(this.surveyForm.getRawValue(), this.step)
+    FORM_STATE_MANAGEMENT.saveFormState(
+      this.surveyForm.getRawValue(),
+      this.step
+    );
   }
 
   /**
@@ -544,15 +652,15 @@ export class SurveyComponent implements OnInit {
    * @param formValue
    */
   goToNextStep(formValue: any) {
-    let nextStep = this.step + 1
+    let nextStep = this.step + 1;
     // QUESTION SKIPPING STEPS HERE
 
-    if(this.step == 7) {
+    if (this.step == 7) {
       // check if q8 or q9
-      if(formValue.q6 && formValue.q6! === 2) {
-        nextStep = 8
+      if (formValue.q6 && formValue.q6! === 2) {
+        nextStep = 8;
       } else {
-        nextStep = 9
+        nextStep = 9;
       }
     }
 
@@ -563,62 +671,61 @@ export class SurveyComponent implements OnInit {
    * Go to previous step
    */
   prevStep() {
-    let prevStep = this.step > 0 ? this.step - 1 : 0
-    const formValue = this.surveyForm.getRawValue()
+    let prevStep = this.step > 0 ? this.step - 1 : 0;
+    const formValue = this.surveyForm.getRawValue();
 
     // BACK IN CASE OF QUESTION SKIP INSTRUCTIONS HERE
-    if(this.step == 9) {
+    if (this.step == 9) {
       // check if q8 or q7
-      if(formValue.q6 && formValue.q6! === 2) {
-        prevStep = 8
+      if (formValue.q6 && formValue.q6! === 2) {
+        prevStep = 8;
       } else {
-        prevStep = 7
+        prevStep = 7;
       }
     }
 
     this.clearControl();
-    this.step = prevStep
+    this.step = prevStep;
   }
 
   /**
    * Reset form and go to step 1
    */
   async goToStep1() {
-    this.step = 1
-    this.surveyForm.reset()
+    this.step = 1;
+    this.surveyForm.reset();
     this.surveyForm.patchValue({
       interviewStartTime: new Date(),
-    })
+    });
   }
 
   /**
    * Getter for form controls
    */
   get personalInformationFormControls() {
-    return this.surveyForm.controls
+    return this.surveyForm.controls;
   }
 
   /**
    * Disable next button
    */
   get disableNext() {
-    // return false
-    const stepMapControls = this.stepMap[this.step].controls
-    return stepMapControls.some((each: string) => this.personalInformationFormControls[each]!.invalid)
+    const stepMapControls = this.stepMap[this.step].controls;
+    return stepMapControls.some(
+      (each: string) => this.personalInformationFormControls[each]!.invalid
+    );
   }
 
   /**
    * Apply Validations
    */
-  applyValidations() {
-
-  }
+  applyValidations() {}
 
   /**
    * Go back to step one after survey submission success modal closed
    */
   async closeSurveyEndModal() {
-    await this.goToStep1()
+    await this.goToStep1();
   }
 
   /**
@@ -638,23 +745,25 @@ export class SurveyComponent implements OnInit {
    * Submit survey form
    */
   async submitSurveyForm() {
-    const formData = this.surveyForm.getRawValue()
-
+    const formData = this.surveyForm.getRawValue();
 
     const requestBody: any = {
       ...formData,
-    }
+    };
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      requestBody.latitude = position.coords.latitude
-      requestBody.longitude = position.coords.longitude
-      console.log(requestBody)
-      this.apiCall(requestBody)
-    }, err => {
-      requestBody.latitude = 0
-      requestBody.longitude = 0
-      this.apiCall(requestBody)
-    })
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        requestBody.latitude = position.coords.latitude;
+        requestBody.longitude = position.coords.longitude;
+        console.log(requestBody);
+        this.apiCall(requestBody);
+      },
+      (err) => {
+        requestBody.latitude = 0;
+        requestBody.longitude = 0;
+        this.apiCall(requestBody);
+      }
+    );
   }
 
   /**
@@ -663,7 +772,7 @@ export class SurveyComponent implements OnInit {
    */
   apiCall(requestBody: any) {
     this.surveySubmitStarted = true;
-    console.log(requestBody)
+    console.log(requestBody);
     // this.submissionService.submitForm(requestBody).subscribe({
     //   next: async () => {
     //     this.surveySubmitStarted = false;
@@ -693,11 +802,11 @@ export class SurveyComponent implements OnInit {
    * Clear control on back button
    */
   clearControl() {
-    const currentStep = this.step
+    const currentStep = this.step;
     if (this.stepMap[currentStep]) {
       this.stepMap[currentStep].controls.forEach((eachControl: string) => {
-        this.surveyForm.get(eachControl)?.reset()
-      })
+        this.surveyForm.get(eachControl)?.reset();
+      });
     }
   }
 
@@ -713,18 +822,17 @@ export class SurveyComponent implements OnInit {
    * @param control
    */
   returnAsFormControl(control: AbstractControl) {
-    return control as FormControl
+    return control as FormControl;
   }
 
   /**
    * Change language of question
    */
   switchLanguage() {
-    this.language = this.language === 'english' ? 'hindi' : 'english'
+    this.language = this.language === 'english' ? 'hindi' : 'english';
   }
 
   get isMobile() {
-    return window.innerWidth <= 1200
+    return window.innerWidth <= 1200;
   }
-
 }
