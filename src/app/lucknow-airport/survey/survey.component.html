@@ -22,7 +22,7 @@
     <div class="form-group">
       <nz-radio-group class="radio-group" formControlName="q1">
         <label *ngFor="let list of q1; let i = index" [nzValue]="i+1" class="radio"
-               nz-radio>{{ list[language] }}</label>
+          nz-radio>{{ list[language] }}</label>
       </nz-radio-group>
     </div>
   </div>
@@ -1162,9 +1162,9 @@
           <div class="form-group mb-4">
             <label>Contact Number: </label>
             <p-inputMask autocomplete="off"
-                         class="d-block" formControlName="contactNumber"
-                         inputmode="numeric"
-                         mask="(999) 999-9999" placeholder="(xxx) xxx-xxxx" type="tel">
+              class="d-block" formControlName="contactNumber"
+              inputmode="numeric"
+              mask="(999) 999-9999" placeholder="(xxx) xxx-xxxx" type="tel">
             </p-inputMask>
           </div>
         </div>
