@@ -23,6 +23,10 @@ const FORM_STATE_MANAGEMENT = {
       return JSON.parse(localStorage.getItem('formState')!)
     }
     return null;
+  },
+
+  clearFormState: () => {
+    localStorage.removeItem('formState')
   }
 }
 

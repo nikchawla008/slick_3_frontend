@@ -1,20 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { SubmissionService } from '../../services/submission.service';
-import {
-  FORM_STATE_MANAGEMENT,
-  NO_WHITE_SPACES_ONLY,
-} from '../../utils/common';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { gender, rateQuestion } from '../../utils/constants';
-import { AuthService } from '../../services/auth/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators,} from '@angular/forms';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {SubmissionService} from '../../services/submission.service';
+import {FORM_STATE_MANAGEMENT, NO_WHITE_SPACES_ONLY,} from '../../utils/common';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {gender, rateQuestion} from '../../utils/constants';
+import {AuthService} from '../../services/auth/auth.service';
+import {ActivatedRoute} from '@angular/router';
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY];
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)];
@@ -772,17 +764,18 @@ export class SurveyComponent implements OnInit {
    */
   apiCall(requestBody: any) {
     this.surveySubmitStarted = true;
-    console.log(requestBody);
-    // this.submissionService.submitForm(requestBody).subscribe({
-    //   next: async () => {
-    //     this.surveySubmitStarted = false;
-    //     this.surveyEndedMessage();
-    //     // this.toastService.success('Survey Submitted Successfully!!')
-    //   }, error: (err) => {
-    //     this.surveySubmitStarted = false;
-    //     this.toastService.error(err.error.message);
-    //   }
-    // })
+    // console.log(requestBody);
+    this.submissionService.submitForm(requestBody).subscribe({
+      next: async () => {
+        this.surveySubmitStarted = false;
+        this.surveyEndedMessage();
+        FORM_STATE_MANAGEMENT.clearFormState()
+        // this.toastService.success('Survey Submitted Successfully!!')
+      }, error: (err) => {
+        this.surveySubmitStarted = false;
+        this.toastService.error(err.error.message);
+      }
+    })
   }
 
   /**

@@ -1,5 +1,5 @@
 <app-header *ngIf="showHeader"></app-header>
-<div [ngClass]="{'wrapper': showHeader}">
+<div [ngClass]="{'wrapper': showHeader && !isDashboard}">
   <router-outlet></router-outlet>
 </div>
 

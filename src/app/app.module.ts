@@ -12,6 +12,7 @@ import {HeaderComponent} from './base/header/header.component';
 import {AppInitService} from "./services/auth/app-init.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ApiInterceptorInterceptor} from "./interceptors/api-interceptor.interceptor";
+import {ErrorInterceptor} from "./interceptors/error.interceptor";
 
 registerLocaleData(en);
 
@@ -29,7 +30,6 @@ registerLocaleData(en);
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     AppInitService,
-
     {
       provide: APP_INITIALIZER,
       useFactory: (appInitService: AppInitService) => () => appInitService.init(),
@@ -38,6 +38,9 @@ registerLocaleData(en);
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
     }
   ],
   bootstrap: [AppComponent]

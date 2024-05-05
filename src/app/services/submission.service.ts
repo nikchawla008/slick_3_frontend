@@ -13,7 +13,7 @@ export class SubmissionService {
   ) { }
 
   submitForm(body: any) {
-    return this.http.post(`${environment.backendUrl}/survey/submit`, body).pipe(
+    return this.http.post(`${environment.backendUrl}/survey/submit/script1`, body).pipe(
       take(1)
     )
   }

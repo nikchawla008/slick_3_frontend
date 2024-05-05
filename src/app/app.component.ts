@@ -16,12 +16,14 @@ export class AppComponent implements OnInit{
   }
 
   showHeader: boolean = false;
+  isDashboard: boolean = false;
 
   ngOnInit() {
     this.router.events.subscribe({
       next: (event) => {
         if( event instanceof NavigationEnd) {
           this.showHeader = !event.urlAfterRedirects.includes('/auth')
+          this.isDashboard = event.urlAfterRedirects.includes('/dashboard');
         }
       }
     })

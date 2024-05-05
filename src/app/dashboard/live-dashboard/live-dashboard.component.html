@@ -1,0 +1,29 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <p-dropdown
+        [options]="trains"
+        [(ngModel)]="trainId"
+        [showClear]="false"
+        placeholder="Select a TrainID"
+        (onChange)="onTrainChange($event)"
+      ></p-dropdown>
+    </div>
+  </div>
+
+  <div class="row mt-3" *ngIf="trainId">
+    <div *ngFor="let survey of submittedSurveys" class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-2">
+      <p-card header="{{survey.name}}">
+        <p class="m-0">
+          Coach: <span class="text-info-emphasis">{{survey.coachNumber}}</span>
+        </p>
+        <p class="m-0">
+          Seat: <span class="text-info-emphasis">{{survey.seatNumber}}</span>
+        </p>
+        <p class="m-0">
+          PNR: <span class="text-info-emphasis">{{survey.userPNR}}</span>
+        </p>
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1194,7 +1194,7 @@
 
 
   <div class="button-section">
-    <button (click)="prevStep()" [disabled]="[0].includes(step)" nz-button nzType="primary">Back</button>
+<!--    <button (click)="prevStep()" [disabled]="[0].includes(step)" nz-button nzType="primary">Back</button>-->
     <!--    <span class="step-counter">{{ step }}/{{ MAX_STEP }}</span>-->
     <button (click)="clearControl()" *ngIf="![0].includes(step)" nz-button nzType="dashed">Clear</button>
     <!--    <button *ngIf="![0, 1].includes(step)" (click)="switchLanguage()" nz-button nzType="dashed">Switch Language</button>-->

@@ -25,7 +25,7 @@ export class AuthGuard {
       return true;
     } else {
       if(path.includes('/auth')) {
-        return this.router.parseUrl('/survey')
+        return this.router.parseUrl('/survey/s1')
       }
       return true
     }
