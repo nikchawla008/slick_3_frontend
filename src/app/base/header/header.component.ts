@@ -35,4 +35,8 @@ export class HeaderComponent {
 
   }
 
+  get currentUser() {
+    return this.auth.currentUser.getValue()
+  }
+
 }

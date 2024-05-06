@@ -645,16 +645,9 @@ export class SurveyComponent implements OnInit {
    */
   goToNextStep(formValue: any) {
     let nextStep = this.step + 1;
+
     // QUESTION SKIPPING STEPS HERE
 
-    if (this.step == 7) {
-      // check if q8 or q9
-      if (formValue.q6 && formValue.q6! === 2) {
-        nextStep = 8;
-      } else {
-        nextStep = 9;
-      }
-    }
 
     this.step = nextStep > this.MAX_STEP ? this.MAX_STEP : nextStep;
   }

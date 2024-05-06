@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path: 'live',
     component: LiveDashboardComponent,
-  }
+  },
+  // {
+  //   path: 'client',
+  //   component: ClientDashboardComponent,
+  // }
 ];
 
 @NgModule({

@@ -27,4 +27,11 @@ export class DashboardService {
     )
   }
 
+  getClientDashboardData() {
+    return this.http.post(`${environment.backendUrl}/dashboard/script1/summary`, {}).pipe(
+      take(1),
+      map((data: any) => data.data)
+    )
+  }
+
 }

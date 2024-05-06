@@ -7,11 +7,13 @@ import {ChartModule} from "primeng/chart";
 import {DropdownModule} from "primeng/dropdown";
 import {SharedModule} from "../shared/shared.module";
 import {CardModule} from "primeng/card";
+import {ClientDashboardComponent} from './client-dashboard/client-dashboard.component';
 
 
 @NgModule({
   declarations: [
-    LiveDashboardComponent
+    LiveDashboardComponent,
+    ClientDashboardComponent
   ],
   imports: [
     CommonModule,

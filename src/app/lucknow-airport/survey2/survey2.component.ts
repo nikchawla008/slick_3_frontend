@@ -1,20 +1,12 @@
-import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { SubmissionService } from 'src/app/services/submission.service';
-import {
-  FORM_STATE_MANAGEMENT,
-  NO_WHITE_SPACES_ONLY,
-} from 'src/app/utils/common';
-import { gender, rateQuestion } from 'src/app/utils/constants';
-import { AuthService } from '../../services/auth/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators,} from '@angular/forms';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {SubmissionService} from 'src/app/services/submission.service';
+import {FORM_STATE_MANAGEMENT, NO_WHITE_SPACES_ONLY,} from 'src/app/utils/common';
+import {gender, rateQuestion} from 'src/app/utils/constants';
+import {AuthService} from '../../services/auth/auth.service';
+import {ActivatedRoute} from '@angular/router';
 
 const STRING_EMPTY_VALIDATOR = [Validators.required, NO_WHITE_SPACES_ONLY];
 const NUMBER_VALIDATOR = [Validators.required, Validators.min(0)];
@@ -84,13 +76,13 @@ export class Survey2Component {
 
   rateQuestion = rateQuestion;
   q13Hindi = [
-    '<10 minutes', 
-    '10-20 minutes', 
+    '<10 minutes',
+    '10-20 minutes',
     '>20 minutes'
   ];
   q13English = [
-    '<10 minutes', 
-    '10-20 minutes', 
+    '<10 minutes',
+    '10-20 minutes',
     '>20 minutes'
   ];
   q13 = this.q13Hindi.map((each, index) => ({
@@ -667,16 +659,8 @@ export class Survey2Component {
    */
   goToNextStep(formValue: any) {
     let nextStep = this.step + 1;
-    // QUESTION SKIPPING STEPS HERE
 
-    if (this.step == 7) {
-      // check if q8 or q9
-      if (formValue.q6 && formValue.q6! === 2) {
-        nextStep = 8;
-      } else {
-        nextStep = 9;
-      }
-    }
+    // QUESTION SKIPPING STEPS HERE
 
     this.step = nextStep > this.MAX_STEP ? this.MAX_STEP : nextStep;
   }
